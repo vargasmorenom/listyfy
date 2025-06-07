@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  servicio:[{
+    url:"http://localhost:3000/",
+    key: "encrypt!135790",
+    logo :"./../../../assets/logo/logoanchoNegro-2.png",
+    logosmall :"./../../../assets/logo/logoanchoNegro-small.png"
+  }]
 };
 
 /*

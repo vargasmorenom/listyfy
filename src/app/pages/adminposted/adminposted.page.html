@@ -1,0 +1,81 @@
+
+<app-session></app-session>
+<ion-content  [fullscreen]="true">
+
+  <div class="contenidoapp">
+
+    <form [formGroup]="form" >
+      <div class="tituloConten">
+        <h1>Nueva Lista de Contenido</h1>
+       </div>
+      @for (item of formCreate; track $index; ) {
+
+
+          @if(item.type !== 'select' &&  item.type !=='textarea' && item.type !=='checkbox' && item.type !=='file')
+          {
+            <div class="input-group">
+          <ion-item>
+            <ion-input
+            type="{{item.type}}"
+            name="{{item.name}}"
+            labelPlacement="stacked"
+            label="{{item.label}}"
+            formControlName="{{item.name}}">
+          </ion-input>
+        </ion-item>
+        </div>
+          }
+          @if(item.type === 'textarea'){
+            <div class="input-group">
+            <ion-item>
+            <ion-textarea
+            labelPlacement="stacked"
+            label="{{item.label}}:"
+            formControlName="{{item.name}}">
+          </ion-textarea>
+        </ion-item>
+        </div>
+          }
+          @if(item.type === 'select'){
+            <div class="input-group">
+            <ion-item>
+            <ion-select label="{{item.label}}" formControlName="{{item.name}}" labelPlacement="stacked" placeholder="{{item.label}}">
+              @for(itema of item.content; track $index;){
+                <ion-select-option value="{{itema.id}}">{{itema.dato}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+          </div>
+          }
+        @if(form.get(item.name)?.touched){
+          @if(form.get(item.name)?.errors?.['required']){
+
+                <div class="error">
+                  <span>Este campo es obligatorio.</span>
+                </div>
+
+          }
+          @if(form.get(item.name)?.errors?.['minlength']){
+              <ion-item>
+                <div class="error">
+                  <span>Mínimo 8 caracteres.</span>
+                </div>
+              </ion-item>
+          }
+          @if(form.get(item.name)?.errors?.['pattern']){
+              <ion-item>
+                <div class="error">
+                  <span>Formato inválido de {{item.name}}.</span>
+                </div>
+              </ion-item>
+          }
+        }
+
+    }
+        <ion-button expand="block" (click)="enviar()" [disabled]="form.invalid" >
+          <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Crear tipo de contenido
+        </ion-button>
+    </form>
+</div>
+</ion-content>
+<app-menubajo></app-menubajo>

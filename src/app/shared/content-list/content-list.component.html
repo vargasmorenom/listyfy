@@ -1,0 +1,26 @@
+@for (item of entityNames; track $index; ) {
+
+  <div class="card-container">
+    @for (itemA of item.perfil; track $index; ) {
+    <div class="card-usuario" (click)="perfil(itemA.iduser)">
+      <img class="imagenPefil" src="../../../assets/logo/{{itemA.imagenp}}">
+      <strong>{{itemA.nombre}}</strong>
+    </div>
+    }
+    <div class="card-background" (click)="seeContent(item.id)">
+      <img  src="../../../assets/imagenes/{{item.name}}">
+      <div class="card-content">
+        <div class="card-info">
+          <h2 class="card-title">{{item.label}}</h2>
+          <p class="card-description">{{item.descrpcion}}</p>
+          <p class="card-tipo">{{item.tipo}}</p>
+        </div>
+        <div class="card-items">
+          <ion-icon name="heart-outline" size="large"></ion-icon>
+          <strong>{{item.likes}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+}

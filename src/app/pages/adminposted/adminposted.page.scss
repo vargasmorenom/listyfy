@@ -1,0 +1,68 @@
+
+.contenidoapp{
+  margin-top: 0;
+ width: 90%;
+ margin: 1px auto;}
+
+// form{
+//   border: 6px solid rgb(214, 209, 209);
+//   border-radius: 1em;
+//   margin-top: -250px;
+//   background-color: rgba(125, 138, 177, 0.096);
+// }
+
+
+.tituloConten{
+  text-align: center;
+}
+.tituloConten h1{
+color: #323f5e;
+font-weight: bolder;
+font-size: 1.2em;
+}
+
+ion-button{
+  --background: #313e5d;
+  --background-hover: #f8fdfb;
+  --background-activated: #b3f488;
+  --background-focused: #cef488;
+  --color: rgb(247, 247, 250);
+  --border-radius: 5px;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
+
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+  --ripple-color: deeppink;
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+ion-input{
+  padding: 1em;
+}
+
+ion-header img{
+  width: 450px;
+  height: auto;
+  padding: 1em;
+  border-radius: .5em;
+}
+.error {
+  text-align: center;
+  font-size: 10px;
+}
+.error span{
+  background-color: red;
+  color: rgb(250, 249, 249);
+  padding: 1em;
+  border-radius: 1em;
+  font-weight: bold;
+}
+ion-item{
+  padding: 1em;
+}
+ion-item input{
+  border-radius: 1em;
+}

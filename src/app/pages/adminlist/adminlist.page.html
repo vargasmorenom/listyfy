@@ -1,0 +1,41 @@
+<app-session></app-session>
+<ion-content [fullscreen]="true">
+    <div class="userVal">
+       <ion-card>
+    @for (itema of data.perfil; track $index; ) {
+   
+    <img src="http://localhost:3000/files/{{itema.imagenp}}" alt="Avatar">
+    <ion-card-header>
+    <ion-card-title>{{itema.nombre}}</ion-card-title>
+    <ion-card-subtitle>{{itema.channelName}}</ion-card-subtitle>
+    </ion-card-header>
+   
+    }
+    </ion-card>
+    </div>
+
+
+  <ion-card>
+
+  
+    <img alt="{{data.label}}" src="../../../assets/imagenes/{{data.name}}" />
+    <ion-card-header>
+        <ion-card-title>{{data.label}}</ion-card-title>
+      <ion-card-subtitle>{{data.descrpcion}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+    <div class="user">
+
+    </div>
+  </ion-card>
+
+    @for (item of datacont; track $index; ) {
+      <div class="content-list">
+        <app-x-twitter [iduser]="'hola'" [idconten]="item"></app-x-twitter>
+      </div>
+    }
+</ion-content>
+<app-menubajo></app-menubajo>

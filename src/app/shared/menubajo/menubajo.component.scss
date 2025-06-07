@@ -1,0 +1,21 @@
+ion-tabs{
+  position: sticky !important;
+  scroll-behavior: auto;
+  contain: none !important;
+}
+ion-tabs img{
+width: 35px;
+border-radius: 50%;
+}
+
+ion-icon{
+  color: #303d5c;
+}
+
+.md{
+  background-color: #fbfcfd86;
+}
+
+.plus ion-icon{
+  font-size: 2em;
+}

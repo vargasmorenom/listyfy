@@ -1,0 +1,38 @@
+<div class="menu-header-bg">
+  <div class="editImagen" id="open-image">
+    <ion-icon name="image-outline"></ion-icon>
+    @for(item of info.profilePic; track $index;){   
+      @if(item.medium){
+        <img class="perfilimg" src="{{ 'http://localhost:3000/files/'+ item.medium || perfilimg }}" />
+      } 
+    }
+  </div>
+</div>
+<div class="headerInterno">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>{{info.chanelName}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col class="descriptionperfil">{{info.description}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block">
+          <ion-icon name="people" slot="start"></ion-icon>
+          <strong>Seguir</strong></ion-button>
+        </ion-col>
+      <ion-col>
+        <ion-button expand="block">
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <strong>Me Gusta</strong></ion-button>
+        </ion-col>
+    </ion-row>
+    <ion-row class="staticDataValue">
+      <ion-col><strong>{{info.followersNumber}}</strong></ion-col>
+      <ion-col><strong>{{info.likeNumber}}</strong></ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
