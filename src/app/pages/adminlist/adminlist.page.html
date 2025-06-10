@@ -14,10 +14,8 @@
     </ion-card>
     </div>
 
-
-  <ion-card>
-
   
+  <ion-card>
     <img alt="{{data.label}}" src="../../../assets/imagenes/{{data.name}}" />
     <ion-card-header>
         <ion-card-title>{{data.label}}</ion-card-title>
@@ -31,9 +29,12 @@
 
     </div>
   </ion-card>
+   <ion-button (click)="showWelcome()" expand="block">Agregar Contenido</ion-button>
 
     @for (item of datacont; track $index; ) {
       <div class="content-list">
+         <ion-button class="borrarXtw">
+        <ion-icon name="close"></ion-icon></ion-button>
         <app-x-twitter [iduser]="'hola'" [idconten]="item"></app-x-twitter>
       </div>
     }

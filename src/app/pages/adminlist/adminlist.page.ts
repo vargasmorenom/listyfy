@@ -8,15 +8,17 @@ import { SessionComponent } from 'src/app/shared/session/session.component';
 import { ScriptLoaderService } from 'src/app/services/scriptloader.service';
 import { XTwitterComponent } from 'src/app/shared/x-twitter/x-twitter.component';
 import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
-import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,IonModal } from '@ionic/angular/standalone';
+import { PopupService } from 'src/app/services/popup.service';
+import { NewcontentpopupComponent } from 'src/app/shared/newcontentpopup/newcontentpopup.component';
+import { IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle,IonButton, IonCardContent,IonModal,IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-adminlist',
   templateUrl: './adminlist.page.html',
   styleUrls: ['./adminlist.page.scss'],
   standalone: true,
-  imports: [XTwitterComponent,IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader,
-            IonCard, IonContent,CommonModule,FormsModule,SessionComponent,MenubajoComponent,IonModal]
+  imports: [XTwitterComponent,IonCardContent, IonCardSubtitle,IonButton, IonCardTitle, IonCardHeader,  
+            NewcontentpopupComponent,IonCard, IonContent,CommonModule,FormsModule,SessionComponent,MenubajoComponent,IonModal,IonIcon,]
 })
 export class AdminlistPage implements OnInit,AfterViewInit {
 
@@ -24,7 +26,7 @@ export class AdminlistPage implements OnInit,AfterViewInit {
   public data:any;
   public datacont:any;
 
-  constructor(public param: ActivatedRoute,private scriptLoader: ScriptLoaderService, private navegar:Router) {
+  constructor(public popUp: PopupService,public param: ActivatedRoute,private scriptLoader: ScriptLoaderService, private navegar:Router) {
     this.param.queryParams.subscribe((parametro:any)=>{
       if(!parametro['id']){
 
@@ -37,6 +39,14 @@ export class AdminlistPage implements OnInit,AfterViewInit {
     })
 
 
+  }
+
+    showWelcome() {
+    this.popUp.showPopupDinamic({
+      title: 'Administracion de Contenido',
+      message: 'Nuevo Contenido',
+      confirmText: '',
+    },NewcontentpopupComponent);
   }
 
   ngOnInit() {
