@@ -41,11 +41,12 @@ export class AdminlistPage implements OnInit,AfterViewInit {
 
   }
 
-    showWelcome() {
+    showWelcome(id: any) {
     this.popUp.showPopupDinamic({
       title: 'Administracion de Contenido',
       message: 'Nuevo Contenido',
       confirmText: '',
+      id : id
     },NewcontentpopupComponent);
   }
 

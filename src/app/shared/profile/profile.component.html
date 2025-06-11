@@ -1,5 +1,5 @@
 <div class="menu-header-bg">
-  <div class="editImagen" id="open-image">
+  <div class="editImagen" (click)="showWelcome(info)" >
     <ion-icon name="image-outline"></ion-icon>
     @for(item of info.profilePic; track $index;){   
       @if(item.medium){

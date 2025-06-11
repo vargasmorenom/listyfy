@@ -49,7 +49,7 @@ export const profile = [
   { name: 'linksString',
     label: 'links externos',
     type: 'textarea',
-    explicacion: "Los links deben ser separados por una coma (,) ejemplo (link,link1,) ",
+    explicacion: "Los links deben terminar con una coma (,) ejemplo (Link, Link,) ",
     validations: [
       { type: 'pattern', value: /^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,:.\/@#\s-]{6,300}$/ }
      ]
@@ -57,7 +57,7 @@ export const profile = [
   { name: 'socialMediaString',
     label: 'Redes Sociales',
     type: 'textarea',
-    explicacion: "Las url deben ser separados por una coma (,) ejemplo (facebook,instagram,) ",
+    explicacion: "Las url deben terminar con una coma (,) ejemplo (facebook,instagram,) ",
     validations: [
       { type: 'pattern', value: /^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ,:.\/@#\s-]{6,300}$/ }
     ]

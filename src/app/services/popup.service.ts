@@ -32,13 +32,15 @@ export class PopupService {
     title?: string;
     message?: string;
     confirmText?: string;
+    id:any | null;
   }, popUp:any = null) {
     const modal = await this.modalCtrl.create({
       component: popUp ,
       componentProps: {
         title: options.title || 'Info',
         message: options.message || '',
-        confirmText: options.confirmText || 'OK'
+        confirmText: options.confirmText || 'OK',
+        id: options.id || null
       },
       cssClass: 'custom-popup-modal',
       backdropDismiss: true,

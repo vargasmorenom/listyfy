@@ -15,9 +15,12 @@ import { ProfileComponent } from 'src/app/shared/profile/profile.component';
 import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
 import { InfoPerfilComponent } from 'src/app/shared/info-perfil/info-perfil.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
+import { PopupService } from 'src/app/services/popup.service';
 import { imagen } from './../../configs/imagen';
 import { content } from 'src/app/configs/contentPrueba';
-import { IonContent, IonHeader, IonToolbar, IonIcon, IonItem, IonButton, IonModal, IonInput,IonTextarea,IonSegment, IonSegmentButton,IonLabel, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
+import { EditprofileformComponent } from 'src/app/shared/editprofileform/editprofileform.component';
+import { IonContent, IonHeader, IonToolbar, IonIcon, IonItem, IonButton, IonModal, IonInput,IonTextarea,IonSegment, 
+         IonSegmentButton,IonLabel, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
 import { ToastrService } from 'ngx-toastr';
 
 import { addIcons } from 'ionicons';
@@ -55,7 +58,8 @@ export class PerfilPage implements OnInit {
               public storage: StorageService,
               private perfil: ProfileService,
               public messToast:ToastrService,
-              private routes: Router ) {
+              private routes: Router,
+              public popUp: PopupService ) {
 
       this.perfilimg = '../../../assets/logo/perfil02.png';
       addIcons({person,mail,location,call,close,arrowForwardOutline,images,people,heart});
@@ -75,12 +79,22 @@ export class PerfilPage implements OnInit {
            }else{
             if(this.storage.exists('usuario')){
               const user = this.storage.get('usuario');
+              this.perfilSession = this.storage.get(user.id);
               this.dataPerfil(user.id);
             }
            }
        })
   }
 
+
+   showWelcome(id: any) {
+      this.popUp.showPopupDinamic({
+        title: 'Administracion de Contenido',
+        message: 'Nuevo Contenido',
+        confirmText: '',
+        id : id
+      },EditprofileformComponent);
+    }
 
   cancel() {
 
@@ -97,6 +111,7 @@ export class PerfilPage implements OnInit {
       this.form = this.formUl.createForm(this.formCreate,datacomp);
       this.formCreateImg = imagen;
       this.formImg = this.formUl.createForm(this.formCreateImg,datacomp);
+      
   }
 
   cerrar(){
@@ -127,45 +142,7 @@ export class PerfilPage implements OnInit {
 
   }
 
-  enviar(){
-  const iddata =  this.storage.get('usuario');
 
-  if(!iddata){
-         setTimeout(() =>{
-          this.modal.dismiss({'dismissed': true}); 
-        }, 500);
-
-  }
-
-  const data = {
-    "firstname" : this.form.value.firstname,
-    "lastname" : this.form.value.lastname,
-    "chanelName" : this.form.value.chanelName,
-    "description" : this.form.value.description,
-    "links" : this.form.value.linksString,
-    "phoneNumber" : this.form.value.phoneNumber,
-    "location" : this.form.value.location,
-    "email" : this.form.value.email,
-    "socialMedia" : this.form.value.socialMediaString,
-    "instantMessages" : this.form.value.instantMessagesString,
-    "userBy" : iddata.id 
-  };
-
-    this.perfil.updateProfile(data).subscribe((datos:any)=>{
-      if(datos){
-
-        this.messToast.success(datos.message);
-
-        setTimeout(() =>{
-          this.modal.dismiss({'dismissed': true});
-        }, 1000);
-          setTimeout(() =>{
-          this.routes.navigate(['/perfil']);
-        }, 1500);
-
-      }
-    });;
-  }
 
   enviarImagen(){
     const dataForm = new FormData();

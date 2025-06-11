@@ -3,6 +3,7 @@ import { FormsModule,ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { content } from '../../configs/content';
+import { NavParams } from '@ionic/angular';
 import { IonButton, IonItem, IonInput, IonHeader,IonButtons, 
   IonToolbar,IonTitle,IonContent } from '@ionic/angular/standalone';
 
@@ -20,14 +21,19 @@ export class NewcontentpopupComponent  implements OnInit {
   title: any;
   message: any;
   confirmText: any;
-
-  constructor(public formUl: DynamicFormService,private modalCtrl: ModalController) { 
+  id: any;
+  constructor(public formUl: DynamicFormService,private modalCtrl: ModalController,private navParams: NavParams) { 
     this.content = content;
     this.form = this.formUl.createForm(this.content);
+    console.log(this.id);
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.navParams);
+     const id = this.navParams.get('id');
+      console.log('ID recibido en el popup:', id);
+  }
 
     close() {
     this.modalCtrl.dismiss();
