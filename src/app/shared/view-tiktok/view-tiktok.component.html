@@ -1,0 +1,25 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">✖</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+<blockquote
+ class="tiktok-embed" 
+ [attr.cite]="'https://www.tiktok.com/' +id.user + '/video/' + id.url"
+ [attr.data-video-id]="id.url" 
+ style="max-width: 605px;min-width: 325px;" > 
+ <section> <a target="_blank" title="{{id.user}}" href="https://www.tiktok.com/{{id.user}}?refer=embed"></a> 
+</section>
+ </blockquote> 
+<div class="urlexterna">
+    <a href="https://www.tiktok.com/{{id.urlTik}}" target="_blank">
+        ver video en tiktok</a>
+</div>
+
+</ion-content>
+    

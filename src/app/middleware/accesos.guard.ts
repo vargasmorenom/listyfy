@@ -6,9 +6,10 @@ export const accesosGuard: CanActivateFn = (route, state) => {
  const storageService= inject(StorageService);
  const router = inject(Router);
  const isAuth = storageService.exists('usuario');
+ 
   if(isAuth){
-      router.navigate(['/']);
-      return false;
+     router.navigate(['/']);
+     return false;
   }
 
    return true;

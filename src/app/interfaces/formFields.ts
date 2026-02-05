@@ -2,8 +2,9 @@ export interface FormField {
   name: string;
   label: string;
   explicacion?:string;
-  type: 'text' | 'email' | 'password' | 'number'| 'select' | 'textarea' | 'checkbox' | 'file' | 'custom';
+  type: 'text' | 'email' | 'password' | 'number'| 'select' | 'textarea' | 'checkbox' | 'file' | 'custom' | 'radio';
   content?: any[];
+  htmlvalue?: string;
   htmlType?:any;
   link?:string;
   value: any;

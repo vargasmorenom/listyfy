@@ -8,26 +8,30 @@ import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavController } from '@ionic/angular';
 import { IonHeader,IonIcon, IonToolbar,IonTitle,IonButtons,IonButton,IonContent,IonInput,
-         IonTextarea,IonItem,IonLabel} from '@ionic/angular/standalone';
+         IonItem,IonLabel} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-editprofileimageform',
   templateUrl: './editprofileimageform.component.html',
   styleUrls: ['./editprofileimageform.component.scss'],
-  imports: [IonHeader,IonIcon, IonToolbar, IonTitle,IonLabel, IonButtons, IonButton, IonInput, IonItem,IonTextarea,IonContent, FormsModule, ReactiveFormsModule],
+  imports: [IonHeader,IonIcon, IonToolbar, IonTitle,IonLabel, IonButtons, IonButton, IonInput, 
+            IonItem,IonContent, FormsModule, ReactiveFormsModule],
   standalone: true,
 })
 export class EditprofileimageformComponent  implements OnInit {
  title: string = '';
- public formImg!: FormGroup; 
+ public formImg: FormGroup = new FormGroup({});
  public form!: FormGroup; 
  public formCreateImg:any;
  public fileData:any;
- public imagen:any;
+ public imagenCarga:any;
+ public perfilId:any;
 
     constructor(public formUl: DynamicFormService,
               private navParams: NavParams,
+              private navCtrl: NavController,
               public messToast:ToastrService,
               private modalCtrl: ModalController,
               private perfil: ProfileService,
@@ -36,12 +40,17 @@ export class EditprofileimageformComponent  implements OnInit {
 
       this.formCreateImg = imagen;
       const id = this.navParams.get('id');
+      this.perfilId = id.userBy;
       this.formImg = this.formUl.createForm(this.formCreateImg,id);
               }
 
   ngOnInit() {}
-       close() {
+
+  close(id:any) {
     this.modalCtrl.dismiss();
+      this.navCtrl.navigateForward('perfil', {
+        queryParams: { id: id }
+      });
   }
 
     onfile(event:any){
@@ -53,7 +62,7 @@ export class EditprofileimageformComponent  implements OnInit {
         reader.readAsDataURL(file);
 
         reader.onload = (e)=>{
-          this.imagen = reader.result;
+          this.imagenCarga = reader.result;
         }
     }
   }
@@ -70,23 +79,24 @@ export class EditprofileimageformComponent  implements OnInit {
     if(this.fileData){
       dataForm.append('imagen', this.fileData);
     }
-
+  if(this.fileData){
 
    this.perfil.updateImage(dataForm).subscribe((data:any)=>{
-     //this.storage.set(user.id, data.perfilUpdated);
+ 
       if(data){
         this.messToast.success(data.message);
         this.storage.set(user.id, data.perfilCreate.perfilUpdated);
-        setTimeout(() =>{
-          this.close();
-        }, 1000);
-          setTimeout(() =>{
-          this.routes.navigate(['/perfil']);
-        }, 1500);
+        // setTimeout(() =>{
+        //   this.close();
+        //   this.routes.navigate(['/perfil']);
+        // }, 1000);
+        //   setTimeout(() =>{
+        //   this.routes.navigate(['/perfil']);
+        // }, 1500);
+         this.routes.navigate(['/perfil']);
       }
    })
-
-
+    }
   }
 
 }

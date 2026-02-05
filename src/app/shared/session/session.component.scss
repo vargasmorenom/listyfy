@@ -1,49 +1,12 @@
-// ion-header{
-//   display: flex;
-//   background: white;
-//   border-bottom: 2px solid rgb(163, 164, 168);
-// }
 
-// ion-img{
-//  width: 150px;
-//  height: auto;
-
-// }
-// ion-header{
-//   display: flex;
-
-// }
-// ion-buttons{
-//   margin: .5em auto;
-// }
-// ion-icon{
-//   color: rgb(179, 174, 174);
-// }
-
-// ion-button{
-//   border: 2px solid rgb(199, 196, 196);
-//   color:gray;
-//   margin-right: 1em;
-//   border-radius: .5em;
-// }
-
-// ion-button:hover{
-//   border: 2px solid rgb(113, 92, 206);
-//   color:rgb(99, 26, 26);
-
-// }
-// ion-menu-button ion-icon{
-//   color: red;
-
-// }
 ion-header{
 
   background: #303d5c;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  gap: 12px;
+  padding: 1px;
+  gap: 1px;
 
 
 }
@@ -63,14 +26,15 @@ ion-img{
   object-fit: cover;
 }
 
-// .block {
-//   width: 100%;
-//   height: 300px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
 
-// ion-modal {
-//   --height: auto;
-// }
+  ion-action-sheet.my-custom-class {
+    --background: #f8f6f5;
+    --font-size: 1.5em;
+    --border-radius: 3em;
+    --backdrop-opacity: 0.6;
+    --button-background-selected: #e97223;
+    --button-color: #012f63;
+    --color: #201616;
+    /* role: "destructive" button iOS styling override */
+    --ion-color-danger: #000000;
+  }

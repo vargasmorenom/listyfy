@@ -1,33 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { addIcons } from 'ionicons';
-import { MenuappComponent } from '../menuapp/menuapp.component';
+import { ActivatedRoute,Router } from '@angular/router';
 import { heart, heartOutline,apps } from 'ionicons/icons';
-import { PopupService } from '../../services/popup.service';
-import { IonHeader,IonImg,IonIcon,IonButton,IonContent, IonModal, IonTitle, IonToolbar} from "@ionic/angular/standalone";
+import { menuActive } from 'src/app/configs/menuActive';
+import { ActionSheetServiceService } from 'src/app/services/action-sheet-service.service';
+import { IonHeader,IonImg,IonIcon,IonButton,IonActionSheet} from "@ionic/angular/standalone";
 
 
 @Component({
   selector: 'app-session',
   templateUrl: './session.component.html',
   styleUrls: ['./session.component.scss'],
-  imports:[IonHeader,IonImg,MenuappComponent,IonIcon,IonButton,IonContent, IonModal, IonTitle, IonToolbar]
+  imports:[IonHeader,IonImg,IonIcon,IonButton,IonActionSheet]
 })
 export class SessionComponent  implements OnInit {
   public saludo:string = 'Hola a todos';
-  constructor(private popupService: PopupService) {
+  isActionSheetOpen = false;
+  public menu = menuActive;
+
+  
+  constructor(private actionSheet: ActionSheetServiceService,private router: Router) {
     addIcons({heartOutline,heart,apps});
    }
 
   ngOnInit() {}
- 
-  showWelcome() {
-    this.popupService.showPopup({
-      title: '¡Bienvenido!',
-      message: 'Gracias por usar nuestra app.',
-      confirmText: 'Entendido'
+
+
+  mostrarOpciones() {
+    this.actionSheet.present({
+      header: 'Acciones disponibles',
+      buttons: [
+          {
+          text: 'Home',
+          icon: 'home',
+          handler: () => {
+            this.router.navigate(['/']);
+          }
+        },
+        {
+          text: 'inscripciones',
+          icon: 'create',
+          handler: () => {
+             this.router.navigate(['register']);
+          }
+        },
+        {
+          text: 'Login',
+          role: 'Ingreso',
+          icon: 'person',
+          handler: () => {
+            this.router.navigate(['login']);
+          }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ]
     });
   }
-     
   
 
 }

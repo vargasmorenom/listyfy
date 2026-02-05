@@ -1,6 +1,6 @@
 export const content = [
   { name: 'contenid',
-    label: 'Url del Contenid',
+    label: 'Nuevo Contenido',
     type: 'text',
     validations: [
       { type: 'required' }    ]

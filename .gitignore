@@ -64,6 +64,12 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+android/
+/.ios
+/.expo
+.expo-shared
+.env.local
+.env.*.local
 
 # System files
 .DS_Store

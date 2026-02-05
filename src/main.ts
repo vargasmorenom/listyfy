@@ -8,18 +8,20 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { authValidInterceptor } from './app/middleware/auth-valid.interceptor';
 import { erroresInterceptor } from './app/middleware/errores.interceptor';
-import { ModalController } from '@ionic/angular';
+import { errorConexionInterceptor } from './app/middleware/errorConexion.interceptor';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: ModalController },
+    { provide: PopoverController },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideAnimations(),
     provideToastr({timeOut: 3000, preventDuplicates: true}),
     provideHttpClient(
-      withInterceptors([authValidInterceptor,erroresInterceptor])
+      withInterceptors([authValidInterceptor,erroresInterceptor,errorConexionInterceptor])
     ),
   ],
 });

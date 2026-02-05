@@ -21,7 +21,16 @@ export class DynamicFormService {
           if (validation.type === 'pattern') validations.push(Validators.pattern(validation.value));
         });
       }
-      const initialValue = initialValues[field.name] ?? '';
+
+      let initialValue = initialValues[field.name] ?? '';
+      
+    
+      if (field.type === 'select' || field.type === 'radio') {
+        if(initialValues[field.name]){
+         const valores = initialValues[field.name];
+         initialValue = valores.toString(); // Importante para 'required' en radios
+        }  
+        } 
       group[field.name] = [initialValue, validations];
     });
 

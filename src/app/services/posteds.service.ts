@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  HttpResponse  } from '@angular/common/http';
+import { HttpClient,  HttpResponse,HttpParams  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostedModel } from '../interfaces/posted';
 import { environment } from '../../environments/environment';
@@ -21,4 +21,57 @@ export class PostedsService {
     });
 
   }
+
+  getPostedId(id: string, page: number, limit: number): Observable<HttpResponse<any>>{
+       const params = new HttpParams()
+        .set('id', id)
+        .set('page', page.toString())
+        .set('limit', limit.toString());
+    return this.http.get<any>(this.url + 'getpostid', { params });
+
+  }
+
+  getAllPosted(page: number, limit: number): Observable<HttpResponse<any>>{
+       const params = new HttpParams()
+        .set('page', page.toString())
+        .set('limit', limit.toString());
+    return this.http.get<any>(this.url + 'getpost', { params });
+
+  }
+  
+ getOnePosted(id:string): Observable<HttpResponse<any>>{
+       const params = new HttpParams()
+        .set('id', id.toString());
+    return this.http.get<any>(this.url + 'getonepost', { params });
+
+  }
+
+  updatePosted(posted: FormData): Observable<HttpResponse<any>> {
+    return this.http.put<any>(this.url + 'updatepost', posted, {
+      observe: 'response',
+    });
+  }
+
+    deletePosted(posted: any): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(this.url + 'deletepost', {
+    body: posted,
+    observe: 'response' // esto asegura que recibes el objeto HttpResponse completo
+  });
+  }
+
+  addContent(posted: any): Observable<HttpResponse<any>> {
+    return this.http.put<any>(this.url + 'content/socialid'+posted.typePost, posted, {
+      observe: 'response',
+    });
+  }
+
+
+  deleteContent(id: any,idpost:any): Observable<HttpResponse<any>> {
+      const params = new HttpParams()
+        .set('contentId', id.toString())
+        .set('postId', idpost.toString());
+    return this.http.delete<any>(this.url + 'deletecontent',{ params});
+  }
+
+
 }

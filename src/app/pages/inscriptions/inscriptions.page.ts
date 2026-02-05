@@ -1,4 +1,3 @@
-import { getTestBed } from '@angular/core/testing';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,ReactiveFormsModule, FormGroup } from '@angular/forms';
@@ -9,7 +8,6 @@ import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { inscription } from '../../configs/inscription';
 import { InscriptionService } from '../../services/inscription.service';
 import { CountrysService } from 'src/app/services/countrys.service';
-
 
 import { IonContent,IonItem, IonInput, IonButton, IonIcon,IonCheckbox,IonInputPasswordToggle, IonList, IonText, IonCard } from '@ionic/angular/standalone';
 
@@ -39,6 +37,7 @@ export class InscriptionsPage implements OnInit {
   countries: any[] = [];
   filtered: any[] = [];
   searchText: string = '';
+  pp:any = [];
 
   constructor(private countrys: CountrysService,
               private router: Router,
@@ -96,6 +95,7 @@ export class InscriptionsPage implements OnInit {
   }
 
   enviar(){
+    console.log(10);
 
     const data = {
       "username": this.form.value.username,
@@ -126,6 +126,6 @@ export class InscriptionsPage implements OnInit {
     }else{
       this.messToast.warning('el campo Termino y condiciones debe ser aceptado');
     }
-    }
+     }
 
 }

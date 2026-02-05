@@ -19,24 +19,28 @@ export class ProfileComponent  implements OnInit {
 
   @Input() info!:any;
   public page!:string;
-  title: string = '';
-
-
+  public perfil:boolean = false; 
   public perfilimg:string = '';
+  public dcimg: string='';
+  public urlBack = 'http://localhost:3000/files/';
+  public urlfront = '../../../assets/logo/';
+
   constructor(private storage : StorageService,
               private activatedRoute: ActivatedRoute,
               public popUp: PopupService){
-    this.perfilimg = '../../../assets/logo/perfil02.png';
+              
     addIcons({imageOutline,people,heart,images,person,mail,location,close,arrowForwardOutline});
   }
 
   ngOnInit() {
+   
+      this.sessionActiva();
+      this.imagenPerfil(this.info);
       const currentRouteSnapshot = this.activatedRoute.snapshot;
       this.page = currentRouteSnapshot.url.join('/'); // Obtiene la ruta como una cadena
-      
-
+      console.log(this.page);
   }
- showWelcome(id:any){   
+ mostrarData(id:any){   
   this.popUp.showPopupDinamic({
         title: 'Administracion de Contenido',
         message: 'Nuevo Contenido',
@@ -44,4 +48,19 @@ export class ProfileComponent  implements OnInit {
         id : id
       },EditprofileimageformComponent);
 }
+imagenPerfil(data:any){
+  if(data.profilePic){
+   this.dcimg ='http://localhost:3000/files/'+ data.profilePic[0].medium;
+  }else{
+   this.dcimg = '../../../assets/logo/perfil02.png';
+  }
+   
+}
+
+sessionActiva(){
+  if(this.storage.exists('usuario')){
+    this.perfil = true;
+  }
+}
+
 }

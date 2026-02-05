@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { YoutubeComponent } from './youtube.component';
+import { LikescountComponent } from './likescount.component';
 
-describe('YoutubeComponent', () => {
-  let component: YoutubeComponent;
-  let fixture: ComponentFixture<YoutubeComponent>;
+describe('LikescountComponent', () => {
+  let component: LikescountComponent;
+  let fixture: ComponentFixture<LikescountComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ YoutubeComponent ],
+      declarations: [ LikescountComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(YoutubeComponent);
+    fixture = TestBed.createComponent(LikescountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

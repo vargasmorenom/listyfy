@@ -1,12 +1,19 @@
 <div class="menu-header-bg">
-  <div class="editImagen" (click)="showWelcome(info)" >
-    <ion-icon name="image-outline"></ion-icon>
-    @for(item of info.profilePic; track $index;){   
-      @if(item.medium){
-        <img class="perfilimg" src="{{ 'http://localhost:3000/files/'+ item.medium || perfilimg }}" />
-      } 
-    }
-  </div>
+  @for(item of info.profilePic; track $index;){
+      @if(perfil){   
+    <div class="editImagen" (click)="mostrarData(info)">
+      <ion-icon name="image-outline"></ion-icon>
+      <img class="perfilimg" src="http://localhost:3000/files/{{ item.medium }}" />
+    </div>
+  }
+  
+  @if(!perfil){   
+    <div class="editImagenof">
+      <img class="perfilimg" src="http://localhost:3000/files/{{ item.medium }}" />
+    </div>
+  }  
+
+  }
 </div>
 <div class="headerInterno">
   <ion-grid>

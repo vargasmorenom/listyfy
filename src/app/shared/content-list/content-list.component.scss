@@ -10,7 +10,6 @@
 }
 .card-container:hover {
   box-shadow: 0 4px 20px rgba(134, 135, 201, 0.1); /* Sombra al pasar el mouse */
-  
 }
 
 .card-background {
@@ -23,20 +22,20 @@
 }
 .card-usuario{
   position: absolute;
-  width: 60%;
+  width: 90%;
   display: flex;
   border-radius: 1.4em;
   align-items: center;
   margin-top: 1em;
   margin-left: 1em;
   height: auto;
-  background-color: rgba(115, 127, 231, 0.452);
+  background-color: rgba(115, 127, 231, 0.68);
   z-index: 100;
 
 }
 .card-usuario:hover{
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra al pasar el mouse */
-    background: radial-gradient(circle, rgba(245, 196, 64, 0.3) 0%, rgba(236, 240, 14, 0) 100%);
+  background: radial-gradient(circle, rgba(245, 197, 64, 0.623) 0%, rgba(236, 240, 14, 0) 100%);
   text-shadow: 2px 2px 5px rgba(69, 59, 214, 0.5);
   animation: shine 3s infinite;
 
@@ -44,12 +43,14 @@
 }
 .card-usuario img{
   width: 40px;
+  height: auto;
   border-radius: 50%;
   border:2px solid rgb(195, 197, 188);
 }
 
-.card-usuario strong{
-  margin-left: 1em;
+.card-usuario span{
+  margin-left: .8em;
+  font-weight: bold;
   color: white;
 }
 
@@ -64,33 +65,69 @@
   position: absolute;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  display: block;
   line-height: 1px;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(84, 86, 105, 0.8), transparent); /* Degradado para mejor legibilidad */
+  padding: 6px;
+
+  background: linear-gradient( to top, rgba(84, 86, 105, 0.8), #00000075); /* Degradado para mejor legibilidad */
   color: white; /* Color del texto */
   text-align: center; /* Alineación del texto */
 }
 
 .card-title {
   margin: 0;
-  font-size: 1em;
-  font-weight: bold;
+  display: table-header-group;
+  font-size: .8em;
+  font-weight: 600;
 }
 
 .card-description {
   margin: 10px 0;
   font-size: .7em;
+  text-align: justify;
 }
 .card-items{
-  display: flex;
-  flex-flow: column wrap;
+   display: flex;
+  align-items: center;            /* 👈 los mantiene en la misma altura */
+  width: 100%;  
+  gap: 8px; /* 👈 espacio entre el corazón y el número */
+
 
 }
-.card-items ion-icon,strong{
-  padding: 5px;
+.card-items ion-icon {
+    font-size: 18px;
+    color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+.card-items ion-icon:hover {
+    color: #ff6b6b;
+}
+.card-items span{
+  // font-size: 18px;
+  // float: left;
+  font-size: 13px;
+    font-weight: 500;
+
+}
+.card-items .tipo{
+  // font-size: .8em;
+  // background: red;
+  // padding: 1px 6px;
+  // border-radius: 8px;
+  // margin-right: 5px;
+  // align-items: center;
+  // height: 100%;
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 11px !important;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 

@@ -19,6 +19,7 @@
           name="{{item.name}}"
           placeholder="{{item.label}}"
           formControlName="{{item.name}}"
+          autocomplete="off"
           autocorrect="off">
           @if(item.type === 'password'){
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
@@ -32,6 +33,7 @@
             <ion-item>
               <ion-input
               type="text"
+              autocomplete="off"
               [(ngModel)]="searchText"
               name="{{item.name}}"
               placeholder="{{item.label}}"
@@ -44,7 +46,7 @@
         </div>
 
 
-          @if(filtered.length ){
+          @if(filtered.length){
             <div class="input-group">
           <ion-list class="listasCountys">
             @for(itemCountry of filtered; track $index;){

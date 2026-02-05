@@ -5,18 +5,20 @@ import { urlMatcher } from '../app/utilities/urlmatcher';
 import { ActivacionPage } from './pages/activacion/activacion.page';
 
 export const routes: Routes = [
+   {
+    path: 'no-connection',
+    loadComponent: () => import('./pages/no-connection/no-connection.page').then( m => m.NoConnectionPage)
+  },
   {
     path: '',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage)
   },
   {
     path: 'register',
-    canActivate: [accesosGuard],
     loadComponent: () => import('./pages/inscriptions/inscriptions.page').then( m => m.InscriptionsPage)
   },
   {
     path: 'login',
-    canActivate: [accesosGuard],
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
   {
@@ -52,6 +54,18 @@ export const routes: Routes = [
   {
     path: 'error',
     loadComponent: () => import('./pages/error/error.page').then( m => m.ErrorPage)
+  },
+  {
+    path: 'listprofile',
+    loadComponent: () => import('./pages/listprofile/listprofile.page').then( m => m.ListprofilePage)
+  },
+  {
+    path: 'listprofile',
+    loadComponent: () => import('./pages/listprofile/listprofile.page').then( m => m.ListprofilePage)
+  },
+  {
+    path: 'searcher',
+    loadComponent: () => import('./pages/searcher/searcher.page').then( m => m.SearcherPage)
   },
   {
     path: '**', redirectTo: '/error?type=404'

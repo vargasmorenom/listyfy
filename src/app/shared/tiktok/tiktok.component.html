@@ -1,8 +1,15 @@
-<blockquote
-class="tiktok-embed"
-[attr.cite]="'https://www.tiktok.com/@dyo0lonh26uc/video/{{idconten}}'"
-data-video-id="7490842238184983863"
-style="max-width: 605px;min-width: 325px;" >
-<section>
-</section>
-</blockquote>
+
+@for (item of contenido; track $index; ) {
+  <div class="tiktok" id="{{item.idpost}}">
+  <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]='true'></app-delete-content>
+  <ion-card class="contentTiktok" (click)="viewcontent(item)">
+  <img alt="Silhouette of mountains" src="../../../assets/fondos/tiktok-7406196_640.png" />
+  <ion-icon name="play-circle"></ion-icon>
+  <ion-card-content>
+   <p class="titulo">{{ item.titulo }}...</p> 
+   <p class="creador"><strong>Autor</strong>: <a [href]="item.autorlink" [textContent]="'@' + item.autor"></a></p> 
+  </ion-card-content>
+  </ion-card>
+</div>
+
+}

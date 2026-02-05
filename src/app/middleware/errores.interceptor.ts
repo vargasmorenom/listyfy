@@ -2,9 +2,11 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
+  const toastr = inject(ToastrService);
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
@@ -13,17 +15,21 @@ export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
 
       switch (error.status) {
         case 400:
-          errorMessage = 'Datos inválidos. Verifica tu solicitud.';
+       
+          toastr.error(errorMessage, 'Error 400 : Datos inválidos. Verifica tu solicitud');
           break;
         case 401:
-          errorMessage = 'No autorizado. Inicia sesión nuevamente.';
-          router.navigate(['/login']); // Redirige a login
+          toastr.error(errorMessage, 'Error 401 : No autorizado');
+          setTimeout(() => {
+            router.navigate(['/login']); // Redirige a login
+          }, 2000);
           break;
         case 404:
-          errorMessage = 'Recurso no encontrado.';
+        
+          toastr.error(errorMessage, 'Error 404 : Recurso no encontrado');
           break;
         case 500:
-          errorMessage = 'Error interno del servidor. Contacta al soporte.';
+          toastr.error(errorMessage, 'Error 500 : Error interno del servidor');
           break;
         default:
           if (error.error instanceof ErrorEvent) {

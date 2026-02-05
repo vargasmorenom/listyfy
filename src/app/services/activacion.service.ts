@@ -13,12 +13,10 @@ export class ActivacionService {
     this.url = environment.servicio[0].url;
   }
 
+  seachActivation(datos:any):Observable<any>{
 
+    return this.http.put(this.url + 'activacion', datos );
 
-    seachActivation(datos:any):Observable<any>{
-
-      return this.http.put(this.url + 'activacion', datos );
-
-    }
+  }
 
 }

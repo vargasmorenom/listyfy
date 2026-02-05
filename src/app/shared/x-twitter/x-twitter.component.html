@@ -1,9 +1,11 @@
-<div class="twittercontent">
-
-    <div class="borrarXtw">
-  <blockquote class="twitter-tweet">
-    <a href="https://twitter.com/ExcclesiaLatin/status/{{idconten}}?ref_src=twsrc%5Etfw"></a>
-  </blockquote>
+  @for (item of contenido; track $index; ) {
+  <div class="twitter-container">
+    <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]='true'></app-delete-content>
+    <div class="contentSocial">
+      <blockquote class="twitter-tweet">
+      <a href="https://twitter.com/{{item.username}}/status/{{item.id}}?ref_src=twsrc%5Etfw"></a>
+      </blockquote>
+    </div>
   </div>
-</div>
+}
 

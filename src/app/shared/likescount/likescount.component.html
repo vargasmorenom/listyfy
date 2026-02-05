@@ -1,0 +1,4 @@
+<ion-button fill="clear" size="large" (click)="toggleLike()">
+<ion-icon [name]="liked ? 'heart' : 'heart-outline'" slot="icon-only" color="danger"></ion-icon>
+<span class="like-count">{{count}}</span>
+</ion-button>

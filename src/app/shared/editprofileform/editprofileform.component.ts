@@ -8,7 +8,8 @@ import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ToastrService } from 'ngx-toastr';
-import { IonHeader,IonIcon, IonToolbar,IonTitle,IonButtons,IonButton,IonContent,IonInput,IonTextarea,IonItem} from '@ionic/angular/standalone';
+import { IonHeader,IonIcon, IonToolbar,IonTitle,IonButtons,IonButton,IonContent,IonInput,
+         IonTextarea,IonItem} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-editprofileform',
@@ -39,6 +40,8 @@ export class EditprofileformComponent  implements OnInit {
   }
      close() {
     this.modalCtrl.dismiss();
+    
+    
   }
  
   enviar(){

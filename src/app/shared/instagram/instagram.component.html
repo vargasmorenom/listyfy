@@ -1,6 +1,12 @@
+
+
+@for (item of contenido; track $index; ) {
+<div class="instagram" id="{{item.idpost}}">
+ <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]='true'></app-delete-content>
+
 <blockquote
 class="instagram-media"
-[attr.data-instgrm-permalink]="'https://www.instagram.com/p/{{idconten}}'"
+[attr.data-instgrm-permalink]="'https://www.instagram.com/p/' + item.idpost + '/?utm_source=ig_embed&utm_campaign=loading'"
 data-instgrm-version="12"
 style=" background:#FFF;
         border:0;
@@ -16,7 +22,11 @@ style=" background:#FFF;
         max-height:100%;
         width:undefinedpx;">
     <a id="main_link"
-       href="p/{{idconten}}"
-       style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+       href="p/DPL35M_DmbF"
+       style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:90%;" target="_blank">
     </a>
 </blockquote>
+</div>
+}
+
+

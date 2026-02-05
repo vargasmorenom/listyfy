@@ -7,8 +7,6 @@ import { ContentListComponent } from 'src/app/shared/content-list/content-list.c
 
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
-
-import { content } from 'src/app/configs/contentPrueba';
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/angular/standalone';
 
 @Component({
@@ -20,13 +18,11 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/
 })
 export class ContentPage implements OnInit {
 
-   public listasPerfil:any;
    items: any[] = [];
    ini = 1;
    fin = 3;
 
   constructor() {
-    this.listasPerfil = content;
     addIcons({heartOutline,heart});
 
    }

@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { MenubajoComponent } from '../shared/menubajo/menubajo.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
 import { SessionComponent } from 'src/app/shared/session/session.component';
-import { ProfileComponent } from 'src/app/shared/profile/profile.component';
 import { PopupService } from '../services/popup.service';
+import { PostedsService } from '../services/posteds.service';
+
 
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
@@ -12,41 +13,39 @@ import { heart, heartOutline } from 'ionicons/icons';
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/angular/standalone';
 
 
-/***contenido de prueba */
-
-import { content } from 'src/app/configs/contentPrueba';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonInfiniteScroll,MenubajoComponent, IonInfiniteScrollContent,ContentListComponent, IonContent, CommonModule,SessionComponent,ProfileComponent]
+  imports: [IonInfiniteScroll,MenubajoComponent, IonInfiniteScrollContent,ContentListComponent, 
+            IonContent, CommonModule,SessionComponent]
 
 })
 export class HomePage {
-  public listasPerfil:any[];
+ 
      items: any[] = [];
      ini = 1;
      fin = 3;
 
-    constructor(private popupService: PopupService) {
-      this.listasPerfil = content;
-      addIcons({heartOutline,heart});
+    constructor(private popupService: PopupService,private posted: PostedsService) {
 
+      addIcons({heartOutline,heart});
+      console.log(this.obtenerInfoDispositivo());
      }
 
      
      ngOnInit() {
       this.loadItems();
+      }
 
-    }
+      
      loadItems(){
 
-      // this.getList.getcontent(this.ini,this.fin).subscribe((data:any)=>{
-      //   this.items = this.items.concat(data);
-      //   this.ini ++;
-      //   console.log(this.ini);
-      //});
+      this.posted.getAllPosted(this.ini,this.fin).subscribe((data:any)=>{
+        this.items = this.items.concat(data);
+        console.log(this.items);
+        this.ini ++;
+      });
      }
 
      loadMore(event: any){
@@ -56,4 +55,39 @@ export class HomePage {
         event.target.complete();
       }, 500);
      }
+
+  lastScrollTop = 0;
+  isMenuHidden!:boolean;
+
+  onScroll(event: CustomEvent) {
+    const scrollTop = event.detail.scrollTop;
+
+    if (scrollTop > this.lastScrollTop + 1) {
+      // 👇 Desplazándose hacia abajo → ocultar menú
+      
+      this.isMenuHidden = true;
+     // console.log(this.isMenuHidden);
+    } else if (scrollTop < this.lastScrollTop - 1) {
+      // 👆 Desplazándose hacia arriba → mostrar menú
+      
+      this.isMenuHidden = false;
+      //console.log(this.isMenuHidden);
+      
+    }
+
+    this.lastScrollTop = scrollTop;
+  }
+
+  obtenerInfoDispositivo() {
+  const nav = navigator;
+  return {
+    userAgent: nav.userAgent,
+    language: nav.language,
+    platform: nav.platform,
+    viewport: { width: window.innerWidth, height: window.innerHeight },
+    screen: { width: screen.width, height: screen.height, orientation: screen.orientation?.type || null },
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  };
 }
+}
+
