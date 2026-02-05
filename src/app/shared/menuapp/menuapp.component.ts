@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController,ActionSheetButton } from '@ionic/angular';
 import {
   IonAvatar,
   IonButton,
@@ -13,6 +13,7 @@ import {
   IonModal,
   IonTitle,
   IonToolbar,
+  IonActionSheet
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -32,6 +33,7 @@ import {
     IonModal,
     IonTitle,
     IonToolbar,
+    IonActionSheet
   ],
   standalone: true,
 })
@@ -47,5 +49,19 @@ export class MenuappComponent  implements OnInit {
   close() {
     this.modalCtrl.dismiss();
   }
+
+    actionSheetButtons: ActionSheetButton[] = [
+    {
+      text: 'Eliminar',
+      role: 'destructive',
+      handler: () => {
+        console.log('Eliminar clicked');
+      },
+    },
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+    },
+  ];
 
 }
