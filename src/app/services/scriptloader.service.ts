@@ -87,10 +87,8 @@ export class ScriptLoaderService {
     const context = keys.reduce((o, key) => o?.[key], obj);
     const method = context?.[methodKey!];
 
-    console.log('Intentando ejecutar método:', path, '=>', method);
-
     if (typeof method === 'function') {
-      method.call(context); // ✅ ejecuta con contexto
+      method.call(context);
     } else {
       console.warn(`Método '${path}' no encontrado o no es función`);
     }

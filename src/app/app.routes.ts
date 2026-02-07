@@ -1,8 +1,6 @@
-import { accesosGuard } from './middleware/accesos.guard';
 import { accessUserGuard } from './middleware/access-user.guard';
 import { Routes } from '@angular/router';
 import { urlMatcher } from '../app/utilities/urlmatcher';
-import { ActivacionPage } from './pages/activacion/activacion.page';
 
 export const routes: Routes = [
   {
@@ -54,10 +52,6 @@ export const routes: Routes = [
   {
     path: 'error',
     loadComponent: () => import('./pages/error/error.page').then((m) => m.ErrorPage),
-  },
-  {
-    path: 'listprofile',
-    loadComponent: () => import('./pages/listprofile/listprofile.page').then((m) => m.ListprofilePage),
   },
   {
     path: 'listprofile',

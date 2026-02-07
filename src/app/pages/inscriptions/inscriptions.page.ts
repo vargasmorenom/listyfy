@@ -115,8 +115,6 @@ export class InscriptionsPage implements OnInit {
   }
 
   enviar() {
-    console.log(10);
-
     const data = {
       username: this.form.value.username,
       phoneCountry: this.form.value.pais,
@@ -129,15 +127,12 @@ export class InscriptionsPage implements OnInit {
 
     if (this.form.value.checkdatos === true) {
       this.register.increptionUser(data).subscribe((datos) => {
-        console.log(datos);
         if (datos.status == 201) {
-          console.log(11);
           this.messToast.success('se envio un correo de verificacion a ' + this.form.value.email);
           setTimeout(() => {
             //    this.router.navigate(['/login'])
           }, 2000);
         } else {
-          console.log(10);
           this.messToast.warning('Error', datos.body.message);
         }
       });

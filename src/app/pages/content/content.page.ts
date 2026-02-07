@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SessionComponent } from 'src/app/shared/session/session.component';
-import { ProfileComponent } from 'src/app/shared/profile/profile.component';
-import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
 
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
@@ -17,11 +15,9 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/
   imports: [
     IonInfiniteScroll,
     IonInfiniteScrollContent,
-    ContentListComponent,
     IonContent,
     CommonModule,
     SessionComponent,
-    ProfileComponent,
   ],
 })
 export class ContentPage implements OnInit {
@@ -35,13 +31,7 @@ export class ContentPage implements OnInit {
   ngOnInit() {
     this.loadItems();
   }
-  loadItems() {
-    // this.getList.getcontent(this.ini,this.fin).subscribe((data:any)=>{
-    //   this.items = this.items.concat(data);
-    //   this.ini ++;
-    //   console.log(this.ini);
-    //});
-  }
+  loadItems() {}
 
   loadMore(event: any) {
     setTimeout(() => {

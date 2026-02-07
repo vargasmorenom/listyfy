@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, inject, NgZone } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PopoverController, Platform } from '@ionic/angular'; // 👈 IonicModule eliminado
+import { PopoverController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostedsService } from 'src/app/services/posteds.service';
@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/services/storage.service';
 import { SessionComponent } from 'src/app/shared/session/session.component';
 import { ScriptLoaderService } from 'src/app/services/scriptloader.service';
-import { XTwitterComponent } from 'src/app/shared/x-twitter/x-twitter.component';
 import { ShowcontentComponent } from 'src/app/shared/showcontent/showcontent.component';
 import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
 import { PopupService } from 'src/app/services/popup.service';
@@ -20,11 +19,9 @@ import { NewcontentpopupComponent } from 'src/app/shared/newcontentpopup/newcont
 import {
   IonContent,
   IonImg,
-  IonCardSubtitle,
   IonChip,
   IonCard,
   IonCol,
-  IonRow,
   IonGrid,
   IonCardHeader,
   IonList,
@@ -42,7 +39,6 @@ import {
   styleUrls: ['./adminlist.page.scss'],
   standalone: true,
   imports: [
-    XTwitterComponent,
     ShowcontentComponent,
     SocialmediaComponent,
     IonCardContent,
@@ -51,7 +47,6 @@ import {
     IonCardTitle,
     LikescountComponent,
     IonCardHeader,
-    NewcontentpopupComponent,
     IonCard,
     IonList,
     IonItem,
@@ -63,9 +58,7 @@ import {
     IonIcon,
     IonGrid,
     IonCol,
-    IonRow,
     IonImg,
-    IonCardSubtitle,
     IonChip,
   ],
 })
@@ -87,8 +80,7 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     private navegar: Router,
     private posted: PostedsService,
     public messToast: ToastrService,
-    private storage: StorageService,
-    private platform: Platform
+    private storage: StorageService
   ) {}
   validarEdit() {
     return this.storage.get('usuario');
@@ -112,7 +104,6 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     );
 
     if (result?.data) {
-      console.log('Contenido recibido al cerrar modal:', result.data);
       this.cargarDatos();
     } else if (result?.cancelled) {
       console.warn('Modal no se abrió porque ya existía uno');
@@ -135,9 +126,7 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     });
   }
 
-  searcher(event: any) {
-    this;
-  }
+  searcher(_event: any) {}
 
   async editarContenido(id: any) {
     const result = await this.popUp.showPopupDinamic(
@@ -153,9 +142,7 @@ export class AdminlistPage implements OnInit, AfterViewInit {
       EditcontentlistComponent
     );
 
-    if (result?.data) {
-      console.log('Contenido recibido al cerrar modal:', result.data);
-    } else if (result?.cancelled) {
+    if (result?.cancelled) {
       console.warn('Modal no se abrió porque ya existía uno');
     } else if (result?.error) {
       console.error('Error al abrir modal:', result.message);
@@ -210,15 +197,6 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     this.navegar.navigateByUrl('adminlist?id=' + id, { replaceUrl: true });
   }
 
-  // cepararInfo() {
-  //   let array = [];
-  //   for (let i = 0; i < twitter.length; i++) {
-  //     let camp = twitter[i]['id'].split("/");
-  //     array.push(camp[5]);
-  //   }
-  //   return array;
-  // }
-
   ionViewDidEnter() {
     this.reprocesarEmbeds();
   }
@@ -249,13 +227,6 @@ export class AdminlistPage implements OnInit, AfterViewInit {
           callbackMethodPath: '',
           innerText: '',
         },
-        // {
-        //   url: 'https://www.tiktok.com/embed.js',
-        //   globalObject: 'tt',
-        //   callbackMethodPath: 'tt._onWidgetLoad',
-        //   innerText: ''
-
-        // },
         {
           url: 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0',
           globalObject: 'FB',
@@ -269,9 +240,6 @@ export class AdminlistPage implements OnInit, AfterViewInit {
           innerText: 'lang: en_US',
         },
       ])
-      .then(() => {
-        console.log('Todos los scripts cargados ✅');
-      })
       .catch((err) => {
         console.error('Error cargando scripts:', err);
       });
@@ -287,9 +255,6 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     if ((window as any).FB?.XFBML?.parse) {
       (window as any).FB.XFBML.parse();
     }
-    // if ((window as any).tt?._onWidgetLoad) {
-    //   (window as any).tt._onWidgetLoad();
-    // }
     if ((window as any).IN?.parse) {
       (window as any).IN.parse();
     }

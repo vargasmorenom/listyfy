@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import { PopupService } from 'src/app/services/popup.service';
 import { ScriptLoaderService } from 'src/app/services/scriptloader.service';
 import { ViewTiktokComponent } from '../view-tiktok/view-tiktok.component';
@@ -55,9 +55,7 @@ export class TiktokComponent implements OnInit, AfterViewInit, OnDestroy {
       ViewTiktokComponent
     );
 
-    if (result?.data) {
-      console.log('Contenido recibido al cerrar modal:', result.data);
-    } else if (result?.cancelled) {
+    if (result?.cancelled) {
       console.warn('Modal no se abrió porque ya existía uno');
     } else if (result?.error) {
       console.error('Error al abrir modal:', result.message);

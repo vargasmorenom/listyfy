@@ -54,9 +54,7 @@ export class MenuappComponent implements OnInit {
     {
       text: 'Eliminar',
       role: 'destructive',
-      handler: () => {
-        console.log('Eliminar clicked');
-      },
+      handler: () => {},
     },
     {
       text: 'Cancelar',

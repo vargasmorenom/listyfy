@@ -28,8 +28,6 @@ export class ShowcontentComponent implements OnInit {
   @Input() typecontent: number = 0;
   @Input() idpost: string = '';
 
-  public item: any = [];
-
   constructor() {}
 
   ngOnInit() {}

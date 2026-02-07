@@ -45,7 +45,6 @@ export class ViewtrendsPage implements OnInit {
     loadItems(id: any) {
       this.posted.getAllPostedByTag(this.ini, this.fin, id).subscribe((data: any) => {
         this.items = this.items.concat(data);
-        console.log(this.items);
         this.ini++;
       });
     }

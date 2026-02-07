@@ -22,6 +22,5 @@ export class LinkedlnComponent implements OnInit {
       this.contenido[i]['urlfinal'] = this.getSafeUrl(item.idpost);
       i++;
     }
-    console.log(this.contenido);
   }
 }

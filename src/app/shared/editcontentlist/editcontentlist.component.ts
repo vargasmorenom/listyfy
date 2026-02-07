@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavParams } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { posted } from 'src/app/configs/posted';
 import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
@@ -98,16 +98,14 @@ export class EditcontentlistComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        reader.onload = (e) => {
+        reader.onload = () => {
           this.imagenCarga = reader.result;
         };
       }
     }
   }
 
-  ngOnInit() {
-    console.log('🧪 onComplete recibido en hijo:', this.onComplete);
-  }
+  ngOnInit() {}
 
   enviar() {
     if (this.form.valid) {

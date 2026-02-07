@@ -23,9 +23,7 @@ export class FacebookComponent implements OnInit, AfterViewInit {
       (window as any).FB.XFBML.parse(document.getElementById('fb-post-container'));
     }
   }
-  constructor(private sanitizer: DomSanitizer) {
-    console.log(this.contenido);
-  }
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     let i = 0;
@@ -61,7 +59,5 @@ export class FacebookComponent implements OnInit, AfterViewInit {
       }
       i++;
     }
-
-    console.log(this.contenido);
   }
 }

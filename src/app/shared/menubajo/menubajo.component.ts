@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { menuactivo } from 'src/app/configs/menuSession';
-import { IonTabButton, IonIcon, IonLabel, IonTabs, IonTabBar, IonItemOptions } from '@ionic/angular/standalone';
+import { IonTabButton, IonIcon, IonLabel, IonTabs, IonTabBar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-menubajo',
@@ -16,7 +16,7 @@ import { IonTabButton, IonIcon, IonLabel, IonTabs, IonTabBar, IonItemOptions } f
 export class MenubajoComponent implements OnInit {
   public page!: string;
   public menuactivo: any = '';
-  public valform!: Boolean;
+  public valform!: boolean;
   @Input() estado: boolean = false;
   hideFooter = false;
   lastScrollTop = 0;
