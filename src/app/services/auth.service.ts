@@ -2,16 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
- private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.loggedIn.asObservable();
 
-  constructor() {
-    
-  }
+  constructor() {}
 
   login(token: string) {
     localStorage.setItem('AuthToken', token);
@@ -32,5 +29,4 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('AuthToken');
   }
-
 }

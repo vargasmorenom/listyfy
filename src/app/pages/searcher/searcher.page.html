@@ -1,12 +1,15 @@
 <app-session></app-session>
 <ion-content [fullscreen]="true">
-<ion-searchbar show-clear-button="focus" debounce="500" (ionInput)="onSearch($event)" placeholder="Buscar..."></ion-searchbar>
-<app-content-list [entityNames]="items"></app-content-list>
-<ion-infinite-scroll (ionInfinite)="loadMore($event)">
-  <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Loading more data...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-searchbar
+    show-clear-button="focus"
+    debounce="500"
+    (ionInput)="onSearch($event)"
+    placeholder="Buscar..."
+  ></ion-searchbar>
+  <app-content-list [entityNames]="items"></app-content-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 <app-menubajo [estado]="isMenuHidden"></app-menubajo>

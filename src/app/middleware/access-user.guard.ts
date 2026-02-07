@@ -3,14 +3,14 @@ import { StorageService } from '../services/storage.service';
 import { inject } from '@angular/core';
 
 export const accessUserGuard: CanActivateFn = (route, state) => {
- const storageService = inject(StorageService);
- const router = inject(Router);
+  const storageService = inject(StorageService);
+  const router = inject(Router);
 
- const iduser = storageService.get('usuario');
+  const iduser = storageService.get('usuario');
 
-  if(storageService.exists(iduser.id)){
+  if (storageService.exists(iduser.id)) {
     return true;
   }
-   router.navigate(['/']);
+  router.navigate(['/']);
   return false;
 };

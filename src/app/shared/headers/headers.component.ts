@@ -6,13 +6,12 @@ import { environment } from 'src/environments/environment';
   templateUrl: './headers.component.html',
   styleUrls: ['./headers.component.scss'],
 })
-export class HeadersComponent  implements OnInit {
-  public imgelogo:string;
+export class HeadersComponent implements OnInit {
+  public imgelogo: string;
 
   constructor() {
     this.imgelogo = environment.servicio[0].logo;
-   }
+  }
 
   ngOnInit() {}
-
 }

@@ -10,12 +10,10 @@ export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-
       let errorMessage = 'Error desconocido. Intenta más tarde.';
 
       switch (error.status) {
         case 400:
-       
           toastr.error(errorMessage, 'Error 400 : Datos inválidos. Verifica tu solicitud');
           break;
         case 401:
@@ -25,7 +23,6 @@ export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
           }, 2000);
           break;
         case 404:
-        
           toastr.error(errorMessage, 'Error 404 : Recurso no encontrado');
           break;
         case 500:
@@ -39,11 +36,6 @@ export const erroresInterceptor: HttpInterceptorFn = (req, next) => {
 
       // Lanza el error con el mensaje personalizado
       return throwError(() => new Error(errorMessage));
-
-    }));
-
-
-
+    })
+  );
 };
-
-

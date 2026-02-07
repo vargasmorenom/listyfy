@@ -1,0 +1,8 @@
+node_modules
+dist
+.angular
+platforms
+android
+www
+coverage
+package-lock.json

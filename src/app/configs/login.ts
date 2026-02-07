@@ -1,16 +1,14 @@
 export const login = [
-  { name: 'username',
+  {
+    name: 'username',
     label: 'Username',
     type: 'text',
-    validations: [
-      { type: 'required' },
-      { type: 'minlength', value:8 }]
+    validations: [{ type: 'required' }, { type: 'minlength', value: 8 }],
   },
-  { name: 'password',
+  {
+    name: 'password',
     label: 'Contraseña',
     type: 'password',
-    validations: [
-      { type: 'required' },
-      { type: 'minlength', value:8 }]
-  }
+    validations: [{ type: 'required' }, { type: 'minlength', value: 8 }],
+  },
 ];

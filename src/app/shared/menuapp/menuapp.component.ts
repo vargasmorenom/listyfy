@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController,ActionSheetButton } from '@ionic/angular';
+import { ModalController, ActionSheetButton } from '@ionic/angular';
 import {
   IonAvatar,
   IonButton,
@@ -13,14 +13,14 @@ import {
   IonModal,
   IonTitle,
   IonToolbar,
-  IonActionSheet
+  IonActionSheet,
 } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-menuapp',
   templateUrl: './menuapp.component.html',
   styleUrls: ['./menuapp.component.scss'],
- imports: [
+  imports: [
     IonAvatar,
     IonButton,
     IonButtons,
@@ -33,16 +33,16 @@ import {
     IonModal,
     IonTitle,
     IonToolbar,
-    IonActionSheet
+    IonActionSheet,
   ],
   standalone: true,
 })
-export class MenuappComponent  implements OnInit {
+export class MenuappComponent implements OnInit {
   @Input() title: string = '';
   @Input() message: string = '';
   @Input() confirmText: string = 'OK';
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {}
 
@@ -50,7 +50,7 @@ export class MenuappComponent  implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-    actionSheetButtons: ActionSheetButton[] = [
+  actionSheetButtons: ActionSheetButton[] = [
     {
       text: 'Eliminar',
       role: 'destructive',
@@ -63,5 +63,4 @@ export class MenuappComponent  implements OnInit {
       role: 'cancel',
     },
   ];
-
 }

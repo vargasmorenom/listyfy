@@ -1,9 +1,9 @@
 <ion-tabs [class.menu-hidden]="estado">
   <ion-tab-bar slot="bottom">
-    @for(item of menuItems; track $index) {
-      <ion-tab-button (click)="ruta(item.url,item.id)">
-          <ion-icon name="{{item.icon}}"></ion-icon>
-        <ion-label>{{item.name}}</ion-label>
+    @for (item of menuItems; track $index) {
+      <ion-tab-button (click)="ruta(item.url, item.id)">
+        <ion-icon name="{{ item.icon }}"></ion-icon>
+        <ion-label>{{ item.name }}</ion-label>
       </ion-tab-button>
     }
   </ion-tab-bar>

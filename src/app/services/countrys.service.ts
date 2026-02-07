@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CountrysService {
-
   private cache$!: Observable<any[]>;
   constructor(private http: HttpClient) {}
 

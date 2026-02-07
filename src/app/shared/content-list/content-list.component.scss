@@ -1,6 +1,5 @@
-
 .card-container {
-  width: 90%;/* Ajusta el ancho según necesites */
+  width: 90%; /* Ajusta el ancho según necesites */
   margin: 2px auto;
   position: relative;
   padding-bottom: 5px;
@@ -20,7 +19,7 @@
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(155, 165, 185, 0.2); /* Sombra opcional */
 }
-.card-usuario{
+.card-usuario {
   position: absolute;
   width: 90%;
   display: flex;
@@ -31,25 +30,22 @@
   height: auto;
   background-color: rgba(115, 127, 231, 0.68);
   z-index: 100;
-
 }
-.card-usuario:hover{
+.card-usuario:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra al pasar el mouse */
   background: radial-gradient(circle, rgba(245, 197, 64, 0.623) 0%, rgba(236, 240, 14, 0) 100%);
   text-shadow: 2px 2px 5px rgba(69, 59, 214, 0.5);
   animation: shine 3s infinite;
-
-
 }
-.card-usuario img{
+.card-usuario img {
   width: 40px;
   height: auto;
   border-radius: 50%;
-  border:2px solid rgb(195, 197, 188);
+  border: 2px solid rgb(195, 197, 188);
 }
 
-.card-usuario span{
-  margin-left: .8em;
+.card-usuario span {
+  margin-left: 0.8em;
   font-weight: bold;
   color: white;
 }
@@ -72,7 +68,7 @@
   right: 0;
   padding: 6px;
 
-  background: linear-gradient( to top, rgba(84, 86, 105, 0.8), #00000075); /* Degradado para mejor legibilidad */
+  background: linear-gradient(to top, rgba(84, 86, 105, 0.8), #00000075); /* Degradado para mejor legibilidad */
   color: white; /* Color del texto */
   text-align: center; /* Alineación del texto */
 }
@@ -80,40 +76,37 @@
 .card-title {
   margin: 0;
   display: table-header-group;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 600;
 }
 
 .card-description {
   margin: 10px 0;
-  font-size: .7em;
+  font-size: 0.7em;
   text-align: justify;
 }
-.card-items{
-   display: flex;
-  align-items: center;            /* 👈 los mantiene en la misma altura */
-  width: 100%;  
+.card-items {
+  display: flex;
+  align-items: center; /* 👈 los mantiene en la misma altura */
+  width: 100%;
   gap: 8px; /* 👈 espacio entre el corazón y el número */
-
-
 }
 .card-items ion-icon {
-    font-size: 18px;
-    color: #ffffff;
-    transition: color 0.2s ease;
+  font-size: 18px;
+  color: #ffffff;
+  transition: color 0.2s ease;
 }
 
 .card-items ion-icon:hover {
-    color: #ff6b6b;
+  color: #ff6b6b;
 }
-.card-items span{
+.card-items span {
   // font-size: 18px;
   // float: left;
   font-size: 13px;
-    font-weight: 500;
-
+  font-weight: 500;
 }
-.card-items .tipo{
+.card-items .tipo {
   // font-size: .8em;
   // background: red;
   // padding: 1px 6px;
@@ -121,13 +114,12 @@
   // margin-right: 5px;
   // align-items: center;
   // height: 100%;
-    margin-left: auto;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 9px 12px;
-    border-radius: 12px;
-    font-size: 11px !important;
-    font-weight: 500;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 11px !important;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-

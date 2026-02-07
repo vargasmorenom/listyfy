@@ -1,22 +1,20 @@
-.instagram{
-    // display: flex;
-    // flex-wrap: wrap;
-    // gap: 10px;
-    // width: 90%;
-    // margin: 10px auto;
-    // text-align: center;
+.instagram {
+  // display: flex;
+  // flex-wrap: wrap;
+  // gap: 10px;
+  // width: 90%;
+  // margin: 10px auto;
+  // text-align: center;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 95%;
   margin: 2px auto;
-
 }
 .instagram:hover {
-  box-shadow: 0 6px 18px rgba(48,61,92,0.25);
+  box-shadow: 0 6px 18px rgba(48, 61, 92, 0.25);
   transform: translateY(-2px);
 }
-
 
 // .twitter-container {
 //   position: relative;
@@ -24,7 +22,6 @@
 //   justify-content: center;
 //   margin: 1rem 0;
 // }
-
 
 // .borrarXtw {
 
@@ -57,4 +54,3 @@
 //   --color: #d93025; /* rojo elegante */
 //   transform: scale(1.1);
 // }
-

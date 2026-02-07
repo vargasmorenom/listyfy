@@ -7,14 +7,14 @@ import { matchPasswords } from '../utilities/matchPasswords';
 export class DynamicFormService {
   constructor(private fb: FormBuilder) {}
 
-  createForm(fields: FormField[],initialValues: any = {}): FormGroup {
+  createForm(fields: FormField[], initialValues: any = {}): FormGroup {
     let group: any = {};
 
-    fields.forEach(field => {
+    fields.forEach((field) => {
       let validations: any[] = [];
 
       if (field.validations) {
-        field.validations.forEach(validation => {
+        field.validations.forEach((validation) => {
           if (validation.type === 'required') validations.push(Validators.required);
           if (validation.type === 'minlength') validations.push(Validators.minLength(validation.value));
           if (validation.type === 'maxlength') validations.push(Validators.maxLength(validation.value));
@@ -23,21 +23,20 @@ export class DynamicFormService {
       }
 
       let initialValue = initialValues[field.name] ?? '';
-      
-    
+
       if (field.type === 'select' || field.type === 'radio') {
-        if(initialValues[field.name]){
-         const valores = initialValues[field.name];
-         initialValue = valores.toString(); // Importante para 'required' en radios
-        }  
-        } 
+        if (initialValues[field.name]) {
+          const valores = initialValues[field.name];
+          initialValue = valores.toString(); // Importante para 'required' en radios
+        }
+      }
       group[field.name] = [initialValue, validations];
     });
 
     const formGroup = this.fb.group(group);
 
-    const hasPassword = fields.find(f => f.name === 'password');
-    const hasConfirm = fields.find(f => f.name === 'confirmPassword');
+    const hasPassword = fields.find((f) => f.name === 'password');
+    const hasConfirm = fields.find((f) => f.name === 'confirmPassword');
     if (hasPassword && hasConfirm) {
       formGroup.setValidators(matchPasswords('password', 'confirmPassword'));
     }

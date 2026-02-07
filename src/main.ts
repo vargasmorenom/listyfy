@@ -2,7 +2,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideToastr} from 'ngx-toastr';
+import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -19,9 +19,7 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideAnimations(),
-    provideToastr({timeOut: 3000, preventDuplicates: true}),
-    provideHttpClient(
-      withInterceptors([authValidInterceptor,erroresInterceptor,errorConexionInterceptor])
-    ),
+    provideToastr({ timeOut: 3000, preventDuplicates: true }),
+    provideHttpClient(withInterceptors([authValidInterceptor, erroresInterceptor, errorConexionInterceptor])),
   ],
 });

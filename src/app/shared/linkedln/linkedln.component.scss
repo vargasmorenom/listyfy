@@ -1,15 +1,14 @@
-.linkedln{
-     display: flex;
+.linkedln {
+  display: flex;
   flex-direction: column; /* apila los hijos en columna */
   gap: 10px; /* espacio entre .b y .c */
-    
 }
 
 .linkedln iframe {
-  display: block;       /* Elimina espacios fantasma */
+  display: block; /* Elimina espacios fantasma */
   border: none !important; /* Eliminar bordes */
-  overflow: hidden !important; 
+  overflow: hidden !important;
   width: 90% !important;
-  margin: 1px auto;/* Ajusta la altura */
+  margin: 1px auto; /* Ajusta la altura */
   margin-bottom: -4em;
 }

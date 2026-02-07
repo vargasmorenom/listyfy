@@ -1,4 +1,4 @@
-// // 
+// //
 // .contentTiktok {
 //   position: relative;
 //   width: 340px; /* Ajusta según necesites */
@@ -66,25 +66,23 @@
 //   opacity: 1; /* Aparece al hacer hover */
 // }/*  */
 
-.tiktok{
-    // display: flex;
-    // flex-wrap: wrap;
-    // gap: 10px;
-    // width: 90%;
-    // margin: 10px auto;
-    // text-align: center;
+.tiktok {
+  // display: flex;
+  // flex-wrap: wrap;
+  // gap: 10px;
+  // width: 90%;
+  // margin: 10px auto;
+  // text-align: center;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   width: 95%;
   margin: 2px auto;
-
 }
 .tiktok:hover {
-  box-shadow: 0 6px 18px rgba(48,61,92,0.25);
+  box-shadow: 0 6px 18px rgba(48, 61, 92, 0.25);
   transform: translateY(-2px);
 }
-
 
 .contentTiktok {
   position: relative;
@@ -113,15 +111,15 @@ ion-card ion-icon {
   z-index: 100;
 }
 
-ion-card-content{
+ion-card-content {
   height: 9em;
   background-color: rgb(215, 218, 233);
 }
-ion-card-content .titulo{
-  font-size: .9em;
+ion-card-content .titulo {
+  font-size: 0.9em;
   text-align: justify;
 }
-ion-card-content .creador a{
+ion-card-content .creador a {
   font-size: 1em;
   text-decoration: none;
   cursor: pointer;

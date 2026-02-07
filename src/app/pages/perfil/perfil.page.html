@@ -1,9 +1,7 @@
-
 <app-session></app-session>
 <ion-content [fullscreen]="true">
   <app-profile [info]="perfilSession"></app-profile>
   <div class="contenidoapp">
-
     <ion-segment [(ngModel)]="selectedTab" value="info">
       <ion-segment-button value="info">
         <ion-label>Info</ion-label>
@@ -14,28 +12,20 @@
     </ion-segment>
 
     <div *ngIf="selectedTab === 'info'">
+      <app-info-perfil [perfilSession]="perfilSession"></app-info-perfil>
 
-   <app-info-perfil [perfilSession]="perfilSession"></app-info-perfil>
-
-    <ion-button  (click)="showWelcome(perfilSession)" expand="block">editar</ion-button>
-
+      <ion-button (click)="showWelcome(perfilSession)" expand="block">editar</ion-button>
     </div>
 
     <div class="galeria" *ngIf="selectedTab === 'galeria'">
-      <br>
+      <br />
       <app-content-list [entityNames]="items"></app-content-list>
 
       <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more data...">
-      </ion-infinite-scroll-content>
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
       </ion-infinite-scroll>
-
     </div>
-
   </div>
 </ion-content>
 <app-menubajo></app-menubajo>
-
-

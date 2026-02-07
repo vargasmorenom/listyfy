@@ -10,32 +10,27 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   templateUrl: './no-connection.page.html',
   styleUrls: ['./no-connection.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
 })
 export class NoConnectionPage implements OnInit {
+  constructor(
+    private networkService: NetworkService,
+    private router: Router
+  ) {
+    this.networkService.isOnline$.subscribe((isOnline) => {
+      const currentUrl = this.router.url;
+      console.log(9);
 
-  constructor(private networkService: NetworkService,private router: Router) { 
-          this.networkService.isOnline$.subscribe(isOnline => {
-          const currentUrl = this.router.url;
-           console.log(9);
-  
-          if (!isOnline && currentUrl !== 'no-connection') {
-            console.log(10);
-  
-              this.router.navigate(['no-connection']);
-          } else if (isOnline && currentUrl === 'no-connection') {
-            console.log(11);
-            this.router.navigate(['/']); // O la ruta que prefieras al reconectar
-          }
-      
-     
+      if (!isOnline && currentUrl !== 'no-connection') {
+        console.log(10);
+
+        this.router.navigate(['no-connection']);
+      } else if (isOnline && currentUrl === 'no-connection') {
+        console.log(11);
+        this.router.navigate(['/']); // O la ruta que prefieras al reconectar
+      }
     });
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
-
-
-

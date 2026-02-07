@@ -8,10 +8,9 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   templateUrl: './error.page.html',
   styleUrls: ['./error.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule],
 })
 export class ErrorPage implements OnInit {
-
   errorTitle = 'Ha ocurrido un error';
   errorMessage = 'Intenta de nuevo más tarde.';
 
@@ -26,7 +25,5 @@ export class ErrorPage implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

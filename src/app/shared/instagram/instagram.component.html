@@ -1,32 +1,38 @@
+@for (item of contenido; track $index) {
+  <div class="instagram" id="{{ item.idpost }}">
+    <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]="true"></app-delete-content>
 
-
-@for (item of contenido; track $index; ) {
-<div class="instagram" id="{{item.idpost}}">
- <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]='true'></app-delete-content>
-
-<blockquote
-class="instagram-media"
-[attr.data-instgrm-permalink]="'https://www.instagram.com/p/' + item.idpost + '/?utm_source=ig_embed&utm_campaign=loading'"
-data-instgrm-version="12"
-style=" background:#FFF;
-        border:0;
-        border-radius:3px;
-        box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
+    <blockquote
+      class="instagram-media"
+      [attr.data-instgrm-permalink]="
+        'https://www.instagram.com/p/' + item.idpost + '/?utm_source=ig_embed&utm_campaign=loading'
+      "
+      data-instgrm-version="12"
+      style="
+        background: #fff;
+        border: 0;
+        border-radius: 3px;
+        box-shadow:
+          0 0 1px 0 rgba(0, 0, 0, 0.5),
+          0 1px 10px 0 rgba(0, 0, 0, 0.15);
         margin: 1px;
-        max-width:540px;
-        min-width:326px;
-        padding:0;
-        width:99.375%;
-        width:undefinedpx;
-        height:undefinedpx;
-        max-height:100%;
-        width:undefinedpx;">
-    <a id="main_link"
-       href="p/DPL35M_DmbF"
-       style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:90%;" target="_blank">
-    </a>
-</blockquote>
-</div>
+        max-width: 540px;
+        min-width: 326px;
+        padding: 0;
+        width: 99.375%;
+        width: undefinedpx;
+        height: undefinedpx;
+        max-height: 100%;
+        width: undefinedpx;
+      "
+    >
+      <a
+        id="main_link"
+        href="p/DPL35M_DmbF"
+        style="background: #ffffff; line-height: 0; padding: 0 0; text-align: center; text-decoration: none; width: 90%"
+        target="_blank"
+      >
+      </a>
+    </blockquote>
+  </div>
 }
-
-

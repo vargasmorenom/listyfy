@@ -9,8 +9,8 @@ describe('SocialmediaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SocialmediaComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [SocialmediaComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SocialmediaComponent);

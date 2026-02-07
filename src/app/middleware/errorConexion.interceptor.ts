@@ -12,11 +12,12 @@ export const errorConexionInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       const currentUrl = router.url;
 
-      if (error.status === 0) { // backend caído o sin conexión
+      if (error.status === 0) {
+        // backend caído o sin conexión
         console.error('Error de red detectado.');
 
         // Evitar bucle infinito
-        const isExcluded = excludedRoutes.some(route => currentUrl.includes(route));
+        const isExcluded = excludedRoutes.some((route) => currentUrl.includes(route));
 
         if (!isExcluded) {
           router.navigate(['/no-connection']);

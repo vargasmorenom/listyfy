@@ -9,24 +9,18 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
   imports: [IonApp, IonRouterOutlet],
 })
 export class AppComponent {
+  constructor(
+    private networkService: NetworkService,
+    private router: Router
+  ) {
+    this.networkService.isOnline$.subscribe((isOnline) => {
+      const currentUrl = this.router.url;
 
-  constructor(private networkService: NetworkService,private router: Router) {
-      this.networkService.isOnline$.subscribe(isOnline => {
-          const currentUrl = this.router.url;
-      
-          if (!isOnline && currentUrl !== 'no-connection') {
-            
-  
-              this.router.navigate(['no-connection']);
-          } else if (isOnline && currentUrl === 'no-connection') {
-            
-            this.router.navigate(['/']); // O la ruta que prefieras al reconectar
-          }
-      
-     
+      if (!isOnline && currentUrl !== 'no-connection') {
+        this.router.navigate(['no-connection']);
+      } else if (isOnline && currentUrl === 'no-connection') {
+        this.router.navigate(['/']); // O la ruta que prefieras al reconectar
+      }
     });
-    
   }
-
-
 }

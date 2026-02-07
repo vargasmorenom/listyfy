@@ -8,31 +8,31 @@
 </ion-header>
 
 <ion-content class="ion-padding">
- 
-          <form [formGroup]="formImg" enctype="multipart/form-data">
-            @for (itema of formCreateImg; track $index; ) {
-              @if(itema.type === 'file'){
-                <ion-item class="cargasUp">
-                <ion-input
-                id="cargas"
-                class="upload-btn"
-                type="{{itema.type}}"
-                labelPlacement="floating"
-                (change)="onfile($event)"
-                formControlName="{{itema.name}}"
-                accept="images/*">
-                  <!-- <div for="cargas" slot="label">{{itema.label}}:
+  <form [formGroup]="formImg" enctype="multipart/form-data">
+    @for (itema of formCreateImg; track $index) {
+      @if (itema.type === 'file') {
+        <ion-item class="cargasUp">
+          <ion-input
+            id="cargas"
+            class="upload-btn"
+            type="{{ itema.type }}"
+            labelPlacement="floating"
+            (change)="onfile($event)"
+            formControlName="{{ itema.name }}"
+            accept="images/*"
+          >
+            <!-- <div for="cargas" slot="label">{{itema.label}}:
                   </div> -->
-                </ion-input>
-                <ion-label class="cargarData">Cargar</ion-label>
-              </ion-item>
-                @if(imagenCarga){
-                  <ion-item>
-                        <img class="img-fluid img-thumbnail image" src="{{imagenCarga}}" id="realiceImage">
-                  </ion-item>
-                   }
-              }
-<!-- 
+          </ion-input>
+          <ion-label class="cargarData">Cargar</ion-label>
+        </ion-item>
+        @if (imagenCarga) {
+          <ion-item>
+            <img class="img-fluid img-thumbnail image" src="{{ imagenCarga }}" id="realiceImage" />
+          </ion-item>
+        }
+      }
+      <!-- 
               @if(formImg.get(itema.name)?.touched){
                 @if(form.get(itema.name)?.errors?.['required']){
 
@@ -56,12 +56,9 @@
                     </ion-item>
                 }
               } -->
-
-            }
-            <ion-button expand="block" (click)="enviarImagen()" [disabled]="formImg.invalid" >
-              <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Editar Imagen
-            </ion-button>
-          </form>
-           
+    }
+    <ion-button expand="block" (click)="enviarImagen()" [disabled]="formImg.invalid">
+      <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Editar Imagen
+    </ion-button>
+  </form>
 </ion-content>
-    
