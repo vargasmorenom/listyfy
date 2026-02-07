@@ -6,54 +6,55 @@ import { SessionComponent } from 'src/app/shared/session/session.component';
 import { PopupService } from '../services/popup.service';
 import { PostedsService } from '../services/posteds.service';
 
-
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
 
 import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/angular/standalone';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonInfiniteScroll,MenubajoComponent, IonInfiniteScrollContent,ContentListComponent, 
-            IonContent, CommonModule,SessionComponent]
-
+  imports: [
+    IonInfiniteScroll,
+    MenubajoComponent,
+    IonInfiniteScrollContent,
+    ContentListComponent,
+    IonContent,
+    CommonModule,
+    SessionComponent,
+  ],
 })
 export class HomePage {
- 
-     items: any[] = [];
-     ini = 1;
-     fin = 3;
+  items: any[] = [];
+  ini = 1;
+  fin = 3;
 
-    constructor(private popupService: PopupService,private posted: PostedsService) {
+  constructor(
+    private popupService: PopupService,
+    private posted: PostedsService
+  ) {
+    addIcons({ heartOutline, heart });
+    console.log(this.obtenerInfoDispositivo());
+  }
 
-      addIcons({heartOutline,heart});
-      console.log(this.obtenerInfoDispositivo());
-     }
+  ngOnInit() {
+    this.loadItems();
+  }
 
-     
-     ngOnInit() {
+  loadItems() {
+    this.posted.getAllPosted(this.ini, this.fin).subscribe((data: any) => {
+      this.items = this.items.concat(data);
+      this.ini++;
+    });
+  }
+
+  loadMore(event: any) {
+    setTimeout(() => {
       this.loadItems();
-      }
-
-      
-     loadItems(){
-
-      this.posted.getAllPosted(this.ini,this.fin).subscribe((data:any)=>{
-        this.items = this.items.concat(data);
-        this.ini ++;
-      });
-     }
-
-     loadMore(event: any){
-      setTimeout(() =>{
-
-        this.loadItems();
-        event.target.complete();
-      }, 500);
-     }
+      event.target.complete();
+    }, 500);
+  }
 
   lastScrollTop = 0;
   isMenuHidden!: boolean;
@@ -84,15 +85,14 @@ export class HomePage {
   }
 
   obtenerInfoDispositivo() {
-  const nav = navigator;
-  return {
-    userAgent: nav.userAgent,
-    language: nav.language,
-    platform: nav.platform,
-    viewport: { width: window.innerWidth, height: window.innerHeight },
-    screen: { width: screen.width, height: screen.height, orientation: screen.orientation?.type || null },
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-  };
+    const nav = navigator;
+    return {
+      userAgent: nav.userAgent,
+      language: nav.language,
+      platform: nav.platform,
+      viewport: { width: window.innerWidth, height: window.innerHeight },
+      screen: { width: screen.width, height: screen.height, orientation: screen.orientation?.type || null },
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+  }
 }
-}
-

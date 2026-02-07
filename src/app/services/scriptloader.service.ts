@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ScriptConfig } from '../interfaces/scriptConfig';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScriptLoaderService {
   private loadedScripts = new Map<string, Promise<void>>();
 
   loadScripts(scripts: ScriptConfig[]): Promise<void[]> {
-    return Promise.all(scripts.map(script => this.loadScript(script)));
+    return Promise.all(scripts.map((script) => this.loadScript(script)));
   }
 
   loadScript(scriptConfig: ScriptConfig): Promise<void> {
@@ -80,22 +79,20 @@ export class ScriptLoaderService {
     return promise;
   }
 
-private callMethod(obj: any, path: string): void {
-  if (!obj || !path) return;
+  private callMethod(obj: any, path: string): void {
+    if (!obj || !path) return;
 
-  const keys = path.split('.');
-  const methodKey = keys.pop(); // el último es el nombre del método
-  const context = keys.reduce((o, key) => o?.[key], obj);
-  const method = context?.[methodKey!];
+    const keys = path.split('.');
+    const methodKey = keys.pop(); // el último es el nombre del método
+    const context = keys.reduce((o, key) => o?.[key], obj);
+    const method = context?.[methodKey!];
 
-  console.log('Intentando ejecutar método:', path, '=>', method);
+    console.log('Intentando ejecutar método:', path, '=>', method);
 
-  if (typeof method === 'function') {
-    method.call(context); // ✅ ejecuta con contexto
-  } else {
-    console.warn(`Método '${path}' no encontrado o no es función`);
+    if (typeof method === 'function') {
+      method.call(context); // ✅ ejecuta con contexto
+    } else {
+      console.warn(`Método '${path}' no encontrado o no es función`);
+    }
   }
 }
-}
-
-

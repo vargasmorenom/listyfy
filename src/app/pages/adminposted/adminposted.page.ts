@@ -1,7 +1,6 @@
-
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule,ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
@@ -11,72 +10,98 @@ import { SessionComponent } from './../../shared/session/session.component';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { StorageService } from 'src/app/services/storage.service';
 
-import { IonContent,IonItem, IonInput, IonButton, IonIcon, IonSelect,IonLabel,
-         IonSelectOption,IonTextarea,IonRadio,IonRadioGroup,IonList} from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonItem,
+  IonInput,
+  IonButton,
+  IonIcon,
+  IonSelect,
+  IonLabel,
+  IonSelectOption,
+  IonTextarea,
+  IonRadio,
+  IonRadioGroup,
+  IonList,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-adminposted',
   templateUrl: './adminposted.page.html',
   styleUrls: ['./adminposted.page.scss'],
   standalone: true,
-  imports: [IonContent,IonItem, IonInput, IonButton,IonLabel,
-    IonIcon, FormsModule, ReactiveFormsModule,IonSelect, IonSelectOption,IonTextarea,
-    SessionComponent,MenubajoComponent,IonRadioGroup,IonRadio,IonList],
+  imports: [
+    IonContent,
+    IonItem,
+    IonInput,
+    IonButton,
+    IonLabel,
+    IonIcon,
+    FormsModule,
+    ReactiveFormsModule,
+    IonSelect,
+    IonSelectOption,
+    IonTextarea,
+    SessionComponent,
+    MenubajoComponent,
+    IonRadioGroup,
+    IonRadio,
+    IonList,
+  ],
 })
 export class AdminpostedPage implements OnInit {
+  public formCreate: any;
+  public form: FormGroup;
+  private url!: string;
+  public logo: string;
+  public fileData: any;
+  public imagenCarga: any;
 
-  public formCreate:any;
-  public form:FormGroup;
-  private url!:string;
-  public logo:string;
-  public fileData:any;
-  public imagenCarga:any;
-
-  constructor(public router: Router,
-              public formUl: DynamicFormService,
-              public messToast:ToastrService,
-              public adminPosted: PostedsService,
-              private storage: StorageService) {
+  constructor(
+    public router: Router,
+    public formUl: DynamicFormService,
+    public messToast: ToastrService,
+    public adminPosted: PostedsService,
+    private storage: StorageService
+  ) {
     this.formCreate = posted;
-   // this.url = environment.servicio[0].key;
+    // this.url = environment.servicio[0].key;
     this.form = this.formUl.createForm(this.formCreate);
     this.logo = environment.servicio[0].logosmall;
-
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  dataStorage(){
-    if(this.storage.exists('usuario')){
+  dataStorage() {
+    if (this.storage.exists('usuario')) {
       const user = this.storage.get('usuario');
-      return this.storage.get(user.id);   }
+      return this.storage.get(user.id);
+    }
   }
 
-  onfile(event:any){
-    if(event.target.files && event.target.files.length > 0){
+  onfile(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      if(file.type.includes("image")){
+      if (file.type.includes('image')) {
         this.fileData = file;
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        reader.onload = (e)=>{
+        reader.onload = (e) => {
           this.imagenCarga = reader.result;
-        }
+        };
+      }
     }
-  }
   }
 
   resetForm() {
     this.form.reset();
   }
 
-  enviar(){
+  enviar() {
+    const profile = this.dataStorage();
 
-   const profile = this.dataStorage();
-
-   const dataForm = new FormData();
+    const dataForm = new FormData();
 
     dataForm.append('name', this.form.value.name);
     dataForm.append('description', this.form.value.description);
@@ -88,23 +113,21 @@ export class AdminpostedPage implements OnInit {
     dataForm.append('profilepic', profile.profilePic[0].small);
     dataForm.append('postedBy', profile.userBy);
 
-    if(this.fileData){
+    if (this.fileData) {
       dataForm.append('imagen', this.fileData);
     }
 
-    this.adminPosted.createPosted(dataForm).subscribe((data:any)=>{
-      
-      if(data.status === 200){
+    this.adminPosted.createPosted(dataForm).subscribe((data: any) => {
+      if (data.status === 200) {
         this.messToast.success(data.body.message, 'Success');
         this.form.reset();
         this.imagenCarga = '';
-          setTimeout(() => {
-           this.router.navigate(['/newlist']);
-         }, 1000);
-      }else{
+        setTimeout(() => {
+          this.router.navigate(['/newlist']);
+        }, 1000);
+      } else {
         this.messToast.error(data.body.message, 'Error');
       }
     });
   }
-
 }

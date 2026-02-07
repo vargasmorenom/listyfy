@@ -1,7 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { StorageService } from '../services/storage.service';
 
-
 export const authValidInterceptor: HttpInterceptorFn = (req, next) => {
   const isFormData = req.body instanceof FormData;
 
@@ -13,11 +12,11 @@ export const authValidInterceptor: HttpInterceptorFn = (req, next) => {
   if (!isFormData && ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) {
     const modifiedBody = {
       ...(req.body || {}),
-      userBy: user // ✅ Aquí agregas tu parámetro
+      userBy: user, // ✅ Aquí agregas tu parámetro
     };
 
     updatedReq = req.clone({
-      body: modifiedBody
+      body: modifiedBody,
     });
   }
 
@@ -31,9 +30,9 @@ export const authValidInterceptor: HttpInterceptorFn = (req, next) => {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Origin': 'http://localhost:8100',
-            'Cross-Origin-Resource-Policy': 'cross-origin'
-          }
-        })
+            'Cross-Origin-Resource-Policy': 'cross-origin',
+          },
+        }),
   });
 
   return next(finalReq);

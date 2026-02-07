@@ -5,42 +5,42 @@ export const menuactivo = [
     name: 'Home',
     url: '/',
     icon: 'home-outline',
-    visibility: 'public' // 👈 siempre visible
+    visibility: 'public', // 👈 siempre visible
   },
   {
     name: 'Buscar',
     url: '/search',
     icon: 'search-outline',
-    visibility: 'auth'
+    visibility: 'auth',
   },
   {
     name: 'Nueva Lista',
     url: '/newlist',
     icon: 'add-circle',
-    visibility: 'auth'
+    visibility: 'auth',
   },
   {
     name: 'Tendencias',
     url: '/tendencies',
     icon: 'analytics-outline',
-    visibility: 'auth'
+    visibility: 'auth',
   },
   {
     name: 'Perfil',
     url: '/perfil',
     icon: 'person-circle-outline',
-    visibility: 'auth'
+    visibility: 'auth',
   },
   {
     name: 'Inscripcion',
     url: '/register',
     icon: 'person-add-outline',
-    visibility: 'guest'
+    visibility: 'guest',
   },
   {
     name: 'Login',
     url: '/login',
     icon: 'log-in-outline',
-    visibility: 'guest'
-  }
+    visibility: 'guest',
+  },
 ];

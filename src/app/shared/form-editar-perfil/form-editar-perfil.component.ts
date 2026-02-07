@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './form-editar-perfil.component.html',
   styleUrls: ['./form-editar-perfil.component.scss'],
 })
-export class FormEditarPerfilComponent  implements OnInit {
-
-  constructor() { }
+export class FormEditarPerfilComponent implements OnInit {
+  constructor() {}
 
   ngOnInit() {}
-
 }

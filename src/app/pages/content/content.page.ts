@@ -14,39 +14,39 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/
   templateUrl: './content.page.html',
   styleUrls: ['./content.page.scss'],
   standalone: true,
-  imports: [IonInfiniteScroll, IonInfiniteScrollContent,ContentListComponent,IonContent,CommonModule,SessionComponent,ProfileComponent]
+  imports: [
+    IonInfiniteScroll,
+    IonInfiniteScrollContent,
+    ContentListComponent,
+    IonContent,
+    CommonModule,
+    SessionComponent,
+    ProfileComponent,
+  ],
 })
 export class ContentPage implements OnInit {
-
-   items: any[] = [];
-   ini = 1;
-   fin = 3;
+  items: any[] = [];
+  ini = 1;
+  fin = 3;
 
   constructor() {
-    addIcons({heartOutline,heart});
-
-   }
-   ngOnInit() {
-    this.loadItems();
-
+    addIcons({ heartOutline, heart });
   }
-   loadItems(){
-
+  ngOnInit() {
+    this.loadItems();
+  }
+  loadItems() {
     // this.getList.getcontent(this.ini,this.fin).subscribe((data:any)=>{
     //   this.items = this.items.concat(data);
     //   this.ini ++;
     //   console.log(this.ini);
     //});
-   }
+  }
 
-   loadMore(event: any){
-    setTimeout(() =>{
-
+  loadMore(event: any) {
+    setTimeout(() => {
       this.loadItems();
       event.target.complete();
     }, 500);
-   }
-
-
-
+  }
 }

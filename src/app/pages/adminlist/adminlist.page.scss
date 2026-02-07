@@ -18,14 +18,16 @@ ion-content {
   padding: 14px 16px;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   border-left: 4px solid #303d5c; /* detalle con color base */
 }
 
 .linkprofile:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
 .linkprofile img {
@@ -48,7 +50,7 @@ ion-content {
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease;
   border-top: 4px solid #303d5c; /* acento visual */
 }
@@ -61,7 +63,7 @@ ion-content {
   width: 100%;
   border-radius: 14px;
   margin: 10px 0;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   object-fit: cover;
 }
 
@@ -118,7 +120,9 @@ ion-card-content strong {
   font-weight: 600;
   font-size: 14px;
   color: #303d5c; /* texto con color base */
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .masContent ion-icon {

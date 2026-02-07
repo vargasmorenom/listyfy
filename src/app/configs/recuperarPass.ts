@@ -1,7 +1,3 @@
 export const recuperarPass = [
-  { name: 'Codigo',
-    label: 'codigo Verificacion',
-    type: 'text',
-    validations: [
-      { type: 'required' }    ]
-  }];
+  { name: 'Codigo', label: 'codigo Verificacion', type: 'text', validations: [{ type: 'required' }] },
+];

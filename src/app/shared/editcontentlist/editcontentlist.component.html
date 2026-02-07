@@ -1,4 +1,3 @@
-
 <ion-header translucent>
   <ion-toolbar>
     <ion-title>{{ title }}</ion-title>
@@ -7,121 +6,121 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content  [fullscreen]="true">
-
+<ion-content [fullscreen]="true">
   <div class="contenidoapp">
-
-    <form [formGroup]="form" >
+    <form [formGroup]="form">
       <div class="tituloConten">
         <h1>Editar Lista de Contenido</h1>
-       </div>
-      @for (item of formData; track $index; ) {
-         @if(item.type !== 'select' &&  item.type !=='textarea' && item.type !=='checkbox' && item.type !=='file'&& item.type !=='radio')
-          {
-            <div class="input-group">
-          <ion-item>
-            <ion-input
-            type="{{item.type}}"
-            name="{{item.name}}"
-            labelPlacement="stacked"
-            label="{{item.label}}"
-            formControlName="{{item.name}}">
-          </ion-input>
-        </ion-item>
-        </div>
-          }
-          @if(item.type === 'textarea'){
-            <div class="input-group">
-            <ion-item>
-            <ion-textarea
-            labelPlacement="stacked"
-            label="{{item.label}}:"
-            formControlName="{{item.name}}">
-          </ion-textarea>
-        </ion-item>
-        </div>
-          }
-        @if(item.type === 'radio'){
-         
+      </div>
+      @for (item of formData; track $index) {
+        @if (
+          item.type !== 'select' &&
+          item.type !== 'textarea' &&
+          item.type !== 'checkbox' &&
+          item.type !== 'file' &&
+          item.type !== 'radio'
+        ) {
           <div class="input-group">
-             <ion-list class="optioconten">
-              <ion-label>{{item.label}}</ion-label>
-              <ion-radio-group formControlName="{{item.name}}">
-             @for(itema of item.content; track $index;){
-              <ion-item>
-              <ion-icon name="{{itema.icono}}" slot="start"></ion-icon>
-              <ion-label>{{itema.dato}}</ion-label>
-              <ion-radio slot="end" value="{{itema.id}}"></ion-radio>
-              </ion-item>
-              }
+            <ion-item>
+              <ion-input
+                type="{{ item.type }}"
+                name="{{ item.name }}"
+                labelPlacement="stacked"
+                label="{{ item.label }}"
+                formControlName="{{ item.name }}"
+              >
+              </ion-input>
+            </ion-item>
+          </div>
+        }
+        @if (item.type === 'textarea') {
+          <div class="input-group">
+            <ion-item>
+              <ion-textarea labelPlacement="stacked" label="{{ item.label }}:" formControlName="{{ item.name }}">
+              </ion-textarea>
+            </ion-item>
+          </div>
+        }
+        @if (item.type === 'radio') {
+          <div class="input-group">
+            <ion-list class="optioconten">
+              <ion-label>{{ item.label }}</ion-label>
+              <ion-radio-group formControlName="{{ item.name }}">
+                @for (itema of item.content; track $index) {
+                  <ion-item>
+                    <ion-icon name="{{ itema.icono }}" slot="start"></ion-icon>
+                    <ion-label>{{ itema.dato }}</ion-label>
+                    <ion-radio slot="end" value="{{ itema.id }}"></ion-radio>
+                  </ion-item>
+                }
               </ion-radio-group>
             </ion-list>
           </div>
-          }
-          @if(item.type === 'select'){
-            <div class="input-group">
+        }
+        @if (item.type === 'select') {
+          <div class="input-group">
             <ion-item>
-            <ion-select label="{{item.label}}" 
-              formControlName="{{item.name}}" 
-              labelPlacement="stacked" 
-              placeholder="{{item.label}}">
-              @for(itema of item.content; track $index;){
-                <ion-select-option value="{{itema.id}}">{{itema.dato}}</ion-select-option>
-              }
-            </ion-select>
-          </ion-item>
-          </div>
-          }
-         @if(item.type === 'file'){
-          <ion-item class="cargasUp">
-          <ion-input
-          id="cargas"
-          class="upload-btn"
-          type="{{item.type}}"
-          labelPlacement="floating"
-          (change)="onfile($event)"
-          formControlName="{{item.name}}"
-          accept="images/*">
-            <!-- <div for="cargas" slot="label">{{itema.label}}:
-            </div> -->
-          </ion-input>
-          <ion-label class="cargarData">Cargar</ion-label>
-        </ion-item>
-          @if(imagenCarga){
-            <ion-item>
-                  <img class="img-fluid img-thumbnail image" src="{{imagenCarga}}" id="realiceImage">
+              <ion-select
+                label="{{ item.label }}"
+                formControlName="{{ item.name }}"
+                labelPlacement="stacked"
+                placeholder="{{ item.label }}"
+              >
+                @for (itema of item.content; track $index) {
+                  <ion-select-option value="{{ itema.id }}">{{ itema.dato }}</ion-select-option>
+                }
+              </ion-select>
             </ion-item>
-              }
-          }
-        @if(form.get(item.name)?.touched){
-          @if(form.get(item.name)?.errors?.['required']){
-
-                <div class="error">
-                  <span>Este campo es obligatorio.</span>
-                </div>
-
-          }
-          @if(form.get(item.name)?.errors?.['minlength']){
-              <ion-item>
-                <div class="error">
-                  <span>Mínimo 8 caracteres.</span>
-                </div>
-              </ion-item>
-          }
-          @if(form.get(item.name)?.errors?.['pattern']){
-              <ion-item>
-                <div class="error">
-                  <span>Formato inválido de {{item.name}}.</span>
-                </div>
-              </ion-item>
+          </div>
+        }
+        @if (item.type === 'file') {
+          <ion-item class="cargasUp">
+            <ion-input
+              id="cargas"
+              class="upload-btn"
+              type="{{ item.type }}"
+              labelPlacement="floating"
+              (change)="onfile($event)"
+              formControlName="{{ item.name }}"
+              accept="images/*"
+            >
+              <!-- <div for="cargas" slot="label">{{itema.label}}:
+            </div> -->
+            </ion-input>
+            <ion-label class="cargarData">Cargar</ion-label>
+          </ion-item>
+          @if (imagenCarga) {
+            <ion-item>
+              <img class="img-fluid img-thumbnail image" src="{{ imagenCarga }}" id="realiceImage" />
+            </ion-item>
           }
         }
-
-    }
-        <ion-button expand="block" (click)="enviar()" [disabled]="form.invalid" >
-          <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>
-          Editar contenido
-        </ion-button>
+        @if (form.get(item.name)?.touched) {
+          @if (form.get(item.name)?.errors?.['required']) {
+            <div class="error">
+              <span>Este campo es obligatorio.</span>
+            </div>
+          }
+          @if (form.get(item.name)?.errors?.['minlength']) {
+            <ion-item>
+              <div class="error">
+                <span>Mínimo 8 caracteres.</span>
+              </div>
+            </ion-item>
+          }
+          @if (form.get(item.name)?.errors?.['pattern']) {
+            <ion-item>
+              <div class="error">
+                <span>Formato inválido de {{ item.name }}.</span>
+              </div>
+            </ion-item>
+          }
+        }
+      }
+      <ion-button expand="block" (click)="enviar()" [disabled]="form.invalid">
+        <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>
+        Editar contenido
+      </ion-button>
     </form>
-</div>
+  </div>
 </ion-content>

@@ -1,137 +1,115 @@
-<ion-content  [fullscreen]="true">
+<ion-content [fullscreen]="true">
   <div class="{{currentBackgroundClass}} background-container">
-  <ion-card class="logoCard">
-    <img alt="Listyfy" src="{{logo}}" />
-  </ion-card>
+    <ion-card class="logoCard">
+      <img alt="Listyfy" src="{{logo}}" />
+    </ion-card>
 
-  <form [formGroup]="form" >
-    @for (item of formCreate; track $index; ) {
-
-      @if(item.type !== 'select' &&
-          item.type !=='textarea' &&
-          item.type !=='checkbox' &&
-          item.type !=='file' &&
-          item.type !=='custom'){
+    <form [formGroup]="form">
+      @for (item of formCreate; track $index; ) { @if(item.type !== 'select' && item.type !=='textarea' && item.type
+      !=='checkbox' && item.type !=='file' && item.type !=='custom'){
       <div class="input-group">
         <ion-item>
           <ion-input
-          type="{{item.type}}"
-          name="{{item.name}}"
-          placeholder="{{item.label}}"
-          formControlName="{{item.name}}"
-          autocomplete="off"
-          autocorrect="off">
-          @if(item.type === 'password'){
+            type="{{item.type}}"
+            name="{{item.name}}"
+            placeholder="{{item.label}}"
+            formControlName="{{item.name}}"
+            autocomplete="off"
+            autocorrect="off"
+          >
+            @if(item.type === 'password'){
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            }
+          </ion-input>
+        </ion-item>
+      </div>
+      } @if(item.type ==='custom'){
+      <div class="input-group">
+        <ion-item>
+          <ion-input
+            type="text"
+            autocomplete="off"
+            [(ngModel)]="searchText"
+            name="{{item.name}}"
+            placeholder="{{item.label}}"
+            (ionInput)="onSearchChange($event)"
+            clearInput
+            autocomplete="one-time-code"
+            formControlName="{{item.name}}"
+          >
+          </ion-input>
+        </ion-item>
+      </div>
+
+      @if(filtered.length){
+      <div class="input-group">
+        <ion-list class="listasCountys">
+          @for(itemCountry of filtered; track $index;){
+          <ion-item (click)="selectCountry(itemCountry)"> {{ itemCountry.nameES }} ({{ itemCountry.iso2 }}) </ion-item>
           }
-        </ion-input>
-      </ion-item>
-    </div>
-        }
-      @if(item.type ==='custom'){
-          <div class="input-group">
-            <ion-item>
-              <ion-input
-              type="text"
-              autocomplete="off"
-              [(ngModel)]="searchText"
-              name="{{item.name}}"
-              placeholder="{{item.label}}"
-              (ionInput)="onSearchChange($event)"
-              clearInput
-              autocomplete="one-time-code"
-              formControlName="{{item.name}}">
-            </ion-input>
-          </ion-item>
+        </ion-list>
+      </div>
+      } } @if(item.type === 'checkbox'){
+      <div class="input-group">
+        <ion-item>
+          <ion-checkbox
+            fill="outline"
+            formControlName="{{item.name}}"
+            [indeterminate]="false"
+            errorText="este campo debe estar check"
+            labelPlacement="start"
+          >
+            <a href="{{item.link}}">{{item.label}}</a></ion-checkbox
+          >
+        </ion-item>
+      </div>
+      } @if(form.get(item.name)?.touched){ @if(form.get(item.name)?.errors?.['required']){
+      <ion-item>
+        <div class="error">
+          <span>Este campo es obligatorio.</span>
         </div>
+      </ion-item>
 
-
-          @if(filtered.length){
-            <div class="input-group">
-          <ion-list class="listasCountys">
-            @for(itemCountry of filtered; track $index;){
-              <ion-item  (click)="selectCountry(itemCountry)">
-                {{ itemCountry.nameES }} ({{ itemCountry.iso2 }})
-              </ion-item>
-            }
-              </ion-list>
-            </div>
-          }
-        }
-      @if(item.type === 'checkbox'){
-          <div class="input-group">
-            <ion-item>
-              <ion-checkbox
-              fill="outline"
-              formControlName="{{item.name}}"
-              [indeterminate]="false"
-              errorText="este campo debe estar check"
-              labelPlacement="start">
-                <a href="{{item.link}}">{{item.label}}</a></ion-checkbox>
-              </ion-item>
-            </div>
-        }
-      @if(form.get(item.name)?.touched){
-          @if(form.get(item.name)?.errors?.['required']){
-              <ion-item>
-                <div class="error">
-                  <span>Este campo es obligatorio.</span>
-                </div>
-              </ion-item>
-
-          }
-          @if(form.get(item.name)?.errors?.['minlength']){
-              <ion-item>
-                <div class="error">
-                  <span>Mínimo 8 caracteres.</span>
-                </div>
-              </ion-item>
-          }
-          @if(form.get(item.name)?.errors?.['pattern']){
-              <ion-item>
-                <div class="error">
-                  <span>Formato inválido de {{item.name}}.</span>
-                </div>
-              </ion-item>
-          }
-          @if(item.name === 'password'){
-            @if(form.get(item.name)?.errors?.['pattern']){
-            <ion-item>
-              <div class="error">
-                <ol class="pass">
-                  <ul>
-                    <strong>Requisitos del Campo</strong>
-                    <li>Una Mayuscula</li>
-                    <li>Una Minuscula</li>
-                    <li>Una Numero</li>
-                    <li>Una Caracter Especial</li>
-                    <li>Una Minimo de 8 Caracteres</li>
-                  </ul>
-                </ol>
-              </div>
-            </ion-item>
-          }
-          }
-          @if(item.name === 'confirmPassword'){
-
-            @if(form.errors?.['passwordMismatch']){
-              <ion-item>
-                <ion-text>Los Campos No son Iguales</ion-text>
-              </ion-item>
-            }
-          }
-      }
-
-  }
-  <div class="input-group">
-    <ion-item>
-      <ion-button (click)="enviar()" [disabled]="form.invalid" >
-        <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Enviar Datos
-      </ion-button>
-    </ion-item>
-    </div>
-  </form>
-
-</div>
+      } @if(form.get(item.name)?.errors?.['minlength']){
+      <ion-item>
+        <div class="error">
+          <span>Mínimo 8 caracteres.</span>
+        </div>
+      </ion-item>
+      } @if(form.get(item.name)?.errors?.['pattern']){
+      <ion-item>
+        <div class="error">
+          <span>Formato inválido de {{item.name}}.</span>
+        </div>
+      </ion-item>
+      } @if(item.name === 'password'){ @if(form.get(item.name)?.errors?.['pattern']){
+      <ion-item>
+        <div class="error">
+          <ol class="pass">
+            <ul>
+              <strong>Requisitos del Campo</strong>
+              <li>Una Mayuscula</li>
+              <li>Una Minuscula</li>
+              <li>Una Numero</li>
+              <li>Una Caracter Especial</li>
+              <li>Una Minimo de 8 Caracteres</li>
+            </ul>
+          </ol>
+        </div>
+      </ion-item>
+      } } @if(item.name === 'confirmPassword'){ @if(form.errors?.['passwordMismatch']){
+      <ion-item>
+        <ion-text>Los Campos No son Iguales</ion-text>
+      </ion-item>
+      } } } }
+      <div class="input-group">
+        <ion-item>
+          <ion-button (click)="enviar()" [disabled]="form.invalid">
+            <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Enviar Datos
+          </ion-button>
+        </ion-item>
+      </div>
+    </form>
+  </div>
 </ion-content>
-<app-menubajo [estado]=isMenuHidden></app-menubajo>
+<app-menubajo [estado]="isMenuHidden"></app-menubajo>

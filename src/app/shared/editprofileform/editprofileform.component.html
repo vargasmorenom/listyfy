@@ -8,67 +8,67 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <form [formGroup]="form" class="textForm">
+    @for (item of formCreate; track $index) {
+      @if (item.type === 'text') {
+        <div class="input-group">
+          <ion-item>
+            <ion-input
+              type="{{ item.type }}"
+              name="{{ item.name }}"
+              labelPlacement="stacked"
+              label="{{ item.label }}"
+              formControlName="{{ item.name }}"
+            >
+            </ion-input>
+          </ion-item>
+        </div>
+      }
+      @if (item.type === 'textarea') {
+        <div class="input-group">
+          <ion-item>
+            <ion-textarea
+              labelPlacement="floating"
+              label="{{ item.label }}"
+              fill="solid"
+              formControlName="{{ item.name }}"
+            >
+            </ion-textarea>
+          </ion-item>
+        </div>
+      }
+      @if (form.get(item.name)?.touched) {
+        @if (
+          item.name === 'socialMediaString' || item.name === 'instantMessagesString' || item.name === 'linksString'
+        ) {
+          <div class="info-message">
+            <span>{{ item.explicacion }}</span>
+          </div>
+        }
 
-     <form [formGroup]="form" class="textForm" >
-            @for (item of formCreate; track $index; ) {
-              @if(item.type === 'text'){
-                <div class="input-group">
-                  <ion-item>
-                    <ion-input
-                    type="{{item.type}}"
-                    name="{{item.name}}"
-                    labelPlacement="stacked"
-                    label="{{item.label}}"
-                    formControlName="{{item.name}}">
-                  </ion-input>
-                </ion-item>
-                </div>
-              }
-              @if(item.type === 'textarea'){
-                <div class="input-group">
-                <ion-item>
-                <ion-textarea
-                labelPlacement="floating"
-                label="{{item.label}}"
-                fill="solid"
-                formControlName="{{item.name}}">
-              </ion-textarea>
-            </ion-item>
+        @if (form.get(item.name)?.errors?.['required']) {
+          <div class="error">
+            <span>Campo Obligatorio</span>
+          </div>
+        }
+        @if (form.get(item.name)?.errors?.['minlength']) {
+          <ion-item>
+            <div class="error">
+              <span>Mínimo 8 caracteres.</span>
             </div>
-              }
-              @if(form.get(item.name)?.touched){
-                @if(item.name === 'socialMediaString' || item.name === 'instantMessagesString' || item.name === 'linksString'){ 
-                  <div class="info-message">
-                    <span>{{item.explicacion}}</span>
-                  </div>
-                }
-
-                @if(form.get(item.name)?.errors?.['required']){
-
-                      <div class="error">
-                        <span>Campo Obligatorio</span>
-                      </div>
-                }
-                @if(form.get(item.name)?.errors?.['minlength']){
-                    <ion-item>
-                      <div class="error">
-                        <span>Mínimo 8 caracteres.</span>
-                      </div>
-                    </ion-item>
-                }
-                @if(form.get(item.name)?.errors?.['pattern']){
-                    <ion-item>
-                      <div class="error">
-                        <span>Formato inválido de {{item.name}}.</span>
-                      </div>
-                    </ion-item>
-                }
-              }
-
-            }
-            <ion-button expand="block" (click)="enviar()" [disabled]="form.invalid" >
-              <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Editar Perfil
-            </ion-button>
-          </form>
+          </ion-item>
+        }
+        @if (form.get(item.name)?.errors?.['pattern']) {
+          <ion-item>
+            <div class="error">
+              <span>Formato inválido de {{ item.name }}.</span>
+            </div>
+          </ion-item>
+        }
+      }
+    }
+    <ion-button expand="block" (click)="enviar()" [disabled]="form.invalid">
+      <ion-icon name="arrow-forward-outline" style="margin-right: 5px"></ion-icon>Editar Perfil
+    </ion-button>
+  </form>
 </ion-content>
-    

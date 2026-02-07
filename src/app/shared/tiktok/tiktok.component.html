@@ -1,15 +1,13 @@
-
-@for (item of contenido; track $index; ) {
-  <div class="tiktok" id="{{item.idpost}}">
-  <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]='true'></app-delete-content>
-  <ion-card class="contentTiktok" (click)="viewcontent(item)">
-  <img alt="Silhouette of mountains" src="../../../assets/fondos/tiktok-7406196_640.png" />
-  <ion-icon name="play-circle"></ion-icon>
-  <ion-card-content>
-   <p class="titulo">{{ item.titulo }}...</p> 
-   <p class="creador"><strong>Autor</strong>: <a [href]="item.autorlink" [textContent]="'@' + item.autor"></a></p> 
-  </ion-card-content>
-  </ion-card>
-</div>
-
+@for (item of contenido; track $index) {
+  <div class="tiktok" id="{{ item.idpost }}">
+    <app-delete-content [idContent]="item.idpost" [idpost]="idpost" [session]="true"></app-delete-content>
+    <ion-card class="contentTiktok" (click)="viewcontent(item)">
+      <img alt="Silhouette of mountains" src="../../../assets/fondos/tiktok-7406196_640.png" />
+      <ion-icon name="play-circle"></ion-icon>
+      <ion-card-content>
+        <p class="titulo">{{ item.titulo }}...</p>
+        <p class="creador"><strong>Autor</strong>: <a [href]="item.autorlink" [textContent]="'@' + item.autor"></a></p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 }

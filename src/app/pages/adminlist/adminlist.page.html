@@ -2,13 +2,13 @@
 <ion-content [fullscreen]="true">
   <div class="userVal">
     <ion-card class="linkprofile" (click)="profileview(data.postedBy)">
-      <img [src]="urlfiles + data.profilepic" alt="Avatar">
+      <img [src]="urlfiles + data.profilepic" alt="Avatar" />
       <ion-card-header>
-      <ion-card-title>{{data.chanelName}}</ion-card-title>
+        <ion-card-title>{{data.chanelName}}</ion-card-title>
       </ion-card-header>
     </ion-card>
   </div>
-    <ion-card class="content-card">
+  <ion-card class="content-card">
     @if (usuario?.id == data.postedBy) {
     <div class="card-usuario">
       <ion-button id="click-trigger" fill="outline">
@@ -19,28 +19,27 @@
           <ion-list>
             <ion-item button (click)="editarContenido(data)">Editar Contenido</ion-item>
             <ion-item button (click)="borrarContent(data._id)">Borrar Contenido</ion-item>
-            </ion-list>
+          </ion-list>
         </ng-template>
       </ion-popover>
     </div>
-  }
-      @for (itema of data.imagen; track $index; ) {
+    } @for (itema of data.imagen; track $index; ) {
     <ion-img class="shadow-img" [src]="urlfiles + itema.medium " alt="Imagen destacada"></ion-img>
-      }
-
-  <ion-card-header>
-    <ion-card-title>{{data.name}}</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    <p>Tipo de Contenido :<strong>{{data.typePostName}}</strong></p>
-    <p> {{data.description}}</p>
-    @for (item of data.tags; track $index; ) {
-    <ion-chip color="tertiary">
-     <a (click)="searcherPost(data.id)"><strong>#{{item.name}}</strong></a>
-    </ion-chip>
     }
-  </ion-card-content>
+
+    <ion-card-header>
+      <ion-card-title>{{data.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Tipo de Contenido :<strong>{{data.typePostName}}</strong></p>
+      <p>{{data.description}}</p>
+      @for (item of data.tags; track $index; ) {
+      <ion-chip color="tertiary">
+        <a (click)="searcherPost(data.id)"><strong>#{{item.name}}</strong></a>
+      </ion-chip>
+      }
+    </ion-card-content>
 
     <ion-grid>
       <ion-col size="2">
@@ -49,19 +48,15 @@
       <ion-col size="8" class="social-buttons">
         <app-socialmedia [red]="1"></app-socialmedia>
       </ion-col>
-  </ion-grid>
-   @if(usuario?.id == data.postedBy) {
-      <div class="masContent" (click)="Addcontent(data)">
-        <ion-icon slot="icon-only" name="add-circle" ></ion-icon>
-        <strong>Agregar Contenido</strong>
+    </ion-grid>
+    @if(usuario?.id == data.postedBy) {
+    <div class="masContent" (click)="Addcontent(data)">
+      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      <strong>Agregar Contenido</strong>
     </div>
-   }
-</ion-card>
+    }
+  </ion-card>
 
-
-   
-    <app-showcontent [content]="data.content" [idpost]="data._id" [typecontent]="data.typePost"></app-showcontent> 
-    
-    
+  <app-showcontent [content]="data.content" [idpost]="data._id" [typecontent]="data.typePost"></app-showcontent>
 </ion-content>
 <app-menubajo></app-menubajo>

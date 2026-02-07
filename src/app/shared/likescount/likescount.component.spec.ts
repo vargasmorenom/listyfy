@@ -9,8 +9,8 @@ describe('LikescountComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LikescountComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [LikescountComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LikescountComponent);

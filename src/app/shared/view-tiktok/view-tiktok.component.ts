@@ -1,31 +1,40 @@
-import { Component, OnInit,AfterViewInit } from '@angular/core';
-import { NavParams,ModalController } from '@ionic/angular';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { NavParams, ModalController } from '@ionic/angular';
 import { ScriptLoaderService } from 'src/app/services/scriptloader.service';
-import { IonButton, IonItem, IonInput, IonHeader,IonButtons, 
-IonToolbar,IonTitle,IonContent } from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonItem,
+  IonInput,
+  IonHeader,
+  IonButtons,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-view-tiktok',
   templateUrl: './view-tiktok.component.html',
   styleUrls: ['./view-tiktok.component.scss'],
-  imports: [IonButton, IonItem,IonButtons, IonInput,
-            IonContent,IonHeader,IonToolbar,IonTitle],
-  standalone: true
-
+  imports: [IonButton, IonItem, IonButtons, IonInput, IonContent, IonHeader, IonToolbar, IonTitle],
+  standalone: true,
 })
-export class ViewTiktokComponent  implements OnInit {
+export class ViewTiktokComponent implements OnInit {
   public id: any;
-  public title: String = "Ver Contenido TikTok";
-  constructor( private navParams: NavParams, private modalCtrl: ModalController,private scriptLoader: ScriptLoaderService,) { }
+  public title: String = 'Ver Contenido TikTok';
+  constructor(
+    private navParams: NavParams,
+    private modalCtrl: ModalController,
+    private scriptLoader: ScriptLoaderService
+  ) {}
 
-  ngOnInit() { 
-     this.id = this.navParams.get('id'); 
+  ngOnInit() {
+    this.id = this.navParams.get('id');
   }
 
   close() {
-  this.modalCtrl.dismiss();
-    }
-
+    this.modalCtrl.dismiss();
+  }
 
   ngAfterViewInit() {
     this.reprocesarEmbeds();
@@ -45,6 +54,4 @@ export class ViewTiktokComponent  implements OnInit {
     script.async = true;
     document.body.appendChild(script);
   }
- 
-
 }
