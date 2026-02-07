@@ -99,7 +99,6 @@ export class LoginPage implements OnInit {
         }, 2000);
       } else {
         this.messToast.warning('Se presenta un error en el login');
-        setTimeout(() => {}, 2000);
       }
     });
   }

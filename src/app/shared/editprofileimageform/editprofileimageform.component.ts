@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { imagen } from './../../configs/imagen';
 import { ModalController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
@@ -84,7 +84,7 @@ export class EditprofileimageformComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        reader.onload = (e) => {
+        reader.onload = () => {
           this.imagenCarga = reader.result;
         };
       }
@@ -106,13 +106,6 @@ export class EditprofileimageformComponent implements OnInit {
         if (data) {
           this.messToast.success(data.message);
           this.storage.set(user.id, data.perfilCreate.perfilUpdated);
-          // setTimeout(() =>{
-          //   this.close();
-          //   this.routes.navigate(['/perfil']);
-          // }, 1000);
-          //   setTimeout(() =>{
-          //   this.routes.navigate(['/perfil']);
-          // }, 1500);
           this.routes.navigate(['/perfil']);
         }
       });

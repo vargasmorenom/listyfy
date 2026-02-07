@@ -8,9 +8,6 @@ import { MenubajoComponent } from '../../shared/menubajo/menubajo.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   IonSearchbar,
   IonInfiniteScrollContent,
   IonInfiniteScroll,
@@ -23,9 +20,6 @@ import {
   standalone: true,
   imports: [
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     SessionComponent,
@@ -60,17 +54,12 @@ export class SearcherPage implements OnInit {
       // 👇 Desplazándose hacia abajo → ocultar menú
 
       this.isMenuHidden = true;
-      // console.log(this.isMenuHidden);
     } else if (scrollTop < this.lastScrollTop - 1) {
-      // 👆 Desplazándose hacia arriba → mostrar menú
-
       this.isMenuHidden = false;
-      //console.log(this.isMenuHidden);
     }
 
     this.lastScrollTop = scrollTop;
   }
-  // En searcher.page.ts
 
   loadMore(event: any) {
     this.ini += 3;
@@ -99,9 +88,9 @@ export class SearcherPage implements OnInit {
           } else {
             this.messToast.success('No se encontró contenido relacionado con la búsqueda', 'Sin resultados');
           }
-          error: () => {
-            this.messToast.error('Ocurrió un error al realizar la búsqueda', 'Error');
-          };
+        },
+        error: () => {
+          this.messToast.error('Ocurrió un error al realizar la búsqueda', 'Error');
         },
       });
     }

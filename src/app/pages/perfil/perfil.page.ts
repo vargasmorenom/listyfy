@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionComponent } from 'src/app/shared/session/session.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -36,10 +35,6 @@ import {
   heart,
   images,
   call,
-  videocamOffOutline,
-  videocamOffSharp,
-  heartCircleSharp,
-  hammerSharp,
 } from 'ionicons/icons';
 
 @Component({
@@ -142,7 +137,6 @@ export class PerfilPage implements OnInit {
   loadItems() {
     this.posted.getPostedId(this.idConsult, this.ini, this.fin).subscribe((data: any) => {
       this.items = this.items.concat(data);
-      console.log(this.items);
       this.ini++;
     });
   }

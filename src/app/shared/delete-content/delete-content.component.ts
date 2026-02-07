@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import type { OverlayEventDetail } from '@ionic/core';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { ToastrService } from 'ngx-toastr';
 import { AlertController } from '@ionic/angular';
@@ -18,7 +17,6 @@ export class DeleteContentComponent implements OnInit {
   @Input() idpost!: any;
 
   public titulo = 'Eliminar contenido';
-  //  public alertButtons:any;
 
   constructor(
     private messToast: ToastrService,
@@ -28,7 +26,6 @@ export class DeleteContentComponent implements OnInit {
 
   deleteContent(id: any, idpost: any) {
     this.posted.deleteContent(id, idpost).subscribe((response) => {
-      console.log(response);
       if (response.status === 200) {
         this.messToast.success(response.body.message, 'Éxito');
       }
@@ -65,7 +62,6 @@ export class DeleteContentComponent implements OnInit {
 
   eleminarContenido(id: any) {
     const div = document.getElementById(id);
-    console.log(div);
     div?.remove();
   }
 

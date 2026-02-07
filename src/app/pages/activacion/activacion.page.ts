@@ -1,4 +1,3 @@
-import { routes } from './../../app.routes';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,11 +23,11 @@ import { ActivacionService } from 'src/app/services/activacion.service';
   ],
 })
 export class ActivacionPage implements OnInit {
-  public imagen: String = '';
-  public val: String;
-  public user: String;
+  public imagen: string = '';
+  public val: string;
+  public user: string;
   public validastate: boolean = false;
-  public mensaje: String = '';
+  public mensaje: string = '';
 
   constructor(
     private param: ActivatedRoute,
@@ -54,7 +53,7 @@ export class ActivacionPage implements OnInit {
     }
   }
 
-  validarUser(user: String, id: String) {
+  validarUser(user: string, id: string) {
     const data = {
       token: id,
       username: user,

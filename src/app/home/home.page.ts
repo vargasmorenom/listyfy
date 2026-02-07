@@ -35,7 +35,6 @@ export class HomePage {
     private posted: PostedsService
   ) {
     addIcons({ heartOutline, heart });
-    console.log(this.obtenerInfoDispositivo());
   }
 
   ngOnInit() {

@@ -72,7 +72,6 @@ export class NewcontentpopupComponent implements OnInit {
       };
       this.posted.addContent(dataContenido).subscribe(
         (response) => {
-          console.log(response);
           if (response.status === 200) {
             this.messToast.success(response.body.message, 'Éxito');
             setTimeout(() => {
@@ -97,10 +96,8 @@ export class NewcontentpopupComponent implements OnInit {
           this.messToast.error('Error en la solicitud', 'error');
         }
       );
-
-      // this.modalCtrl.dismiss();
     } else {
-      console.log('Form is invalid');
+      this.messToast.error('Formulario inválido');
     }
   }
 }

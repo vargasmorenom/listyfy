@@ -19,15 +19,11 @@ export class NoConnectionPage implements OnInit {
   ) {
     this.networkService.isOnline$.subscribe((isOnline) => {
       const currentUrl = this.router.url;
-      console.log(9);
 
       if (!isOnline && currentUrl !== 'no-connection') {
-        console.log(10);
-
         this.router.navigate(['no-connection']);
       } else if (isOnline && currentUrl === 'no-connection') {
-        console.log(11);
-        this.router.navigate(['/']); // O la ruta que prefieras al reconectar
+        this.router.navigate(['/']);
       }
     });
   }
