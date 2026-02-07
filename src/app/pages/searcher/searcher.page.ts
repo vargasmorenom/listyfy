@@ -76,7 +76,7 @@ export class SearcherPage implements OnInit {
     this.ini += 3;
     this.fin += 3;
 
-    this.searcherPageService.searchForTags('pendejos', this.ini, this.fin).subscribe((results) => {
+    this.searcherPageService.searchForTags(event, this.ini, this.fin).subscribe((results) => {
       if (results?.length) {
         this.items = [...this.items, ...results];
       }
@@ -85,7 +85,7 @@ export class SearcherPage implements OnInit {
   }
 
   onSearch(event: any) {
-    if (!event.detail.value || event.detail.valuetrim()) return;
+    if (!event.detail.value || event.detail.value.trim() === '') return;
     const query = event.detail.value;
     this.ini = 1;
     this.fin = 3;

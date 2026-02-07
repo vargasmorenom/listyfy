@@ -30,6 +30,11 @@ export class PostedsService {
     return this.http.get<any>(this.url + 'getpost', { params });
   }
 
+  getAllPostedByTag(page: number, limit: number, tag: string): Observable<HttpResponse<any>> {
+    const params = new HttpParams().set('page', page.toString()).set('limit', limit.toString()).set('tagId', tag);
+    return this.http.get<any>(this.url + 'postsbytag', { params });
+  }
+
   getOnePosted(id: string): Observable<HttpResponse<any>> {
     const params = new HttpParams().set('id', id.toString());
     return this.http.get<any>(this.url + 'getonepost', { params });

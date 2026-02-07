@@ -59,7 +59,6 @@ export class MenubajoComponent implements OnInit {
     } else {
       this.navCtrl.navigateForward(valor);
     }
-    console.log(111);
   }
 
   onScroll(event: any) {}

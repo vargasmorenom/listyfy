@@ -9,7 +9,7 @@ export const menuactivo = [
   },
   {
     name: 'Buscar',
-    url: '/search',
+    url: '/searcher',
     icon: 'search-outline',
     visibility: 'auth',
   },
