@@ -1,0 +1,9 @@
+<app-session></app-session>
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <app-content-list [entityNames]="items"></app-content-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<app-menubajo [estado]="isMenuHidden"></app-menubajo>

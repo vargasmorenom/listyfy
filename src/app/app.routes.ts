@@ -71,8 +71,13 @@ export const routes: Routes = [
     path: 'tendencies',
     loadComponent: () => import('./pages/tendencies/tendencies.page').then((m) => m.TendenciesPage),
   },
+   {
+    path: 'viewtrends',
+    loadComponent: () => import('./pages/viewtrends/viewtrends.page').then( m => m.ViewtrendsPage)
+  },
   {
     path: '**',
     redirectTo: '/error?type=404',
   },
+ 
 ];
