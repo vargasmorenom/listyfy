@@ -6,6 +6,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileComponent } from 'src/app/shared/profile/profile.component';
 import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
@@ -49,7 +50,8 @@ export class PerfilPage implements OnInit {
               private perfil: ProfileService,
               public popUp: PopupService, 
               public router: Router,
-              private posted: PostedsService ) {
+              private posted: PostedsService,
+              private authService:AuthService  ) {
       addIcons({person,mail,location,call,close,arrowForwardOutline,images,people,heart});
       
     }
@@ -57,22 +59,19 @@ export class PerfilPage implements OnInit {
 
   ngOnInit() {
             this.param.queryParams.subscribe((parametro:any)=>{
-          if(parametro['id']){
-            this.idConsult = parametro['id']; 
-            this.loadItems();
-        
-            if(this.storage.exists('usuario')){
-               this.perfilSession = this.storage.get(parametro['id']);
-           
-              
-            }else{
-              this.dataPerfil(parametro['id']);
-          
+            if(!parametro['id']){
+              const token = this.authService.getToken();
+              if(token){
+                const idsession  = this.storage.get('usuario'); 
+                this.dataPerfil(idsession.id);
+              }else{
+                this.router.navigate(['/']);
+              }
             }
-           }else{
-            this.router.navigate(['/']);
-          }
-       })
+            if(parametro['id']){
+             this.dataPerfil(parametro['id']);
+            }
+            })
   }
 
 

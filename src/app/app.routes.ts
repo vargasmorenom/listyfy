@@ -67,7 +67,12 @@ export const routes: Routes = [
     path: 'searcher',
     loadComponent: () => import('./pages/searcher/searcher.page').then( m => m.SearcherPage)
   },
+    {
+    path: 'tendencies',
+    loadComponent: () => import('./pages/tendencies/tendencies.page').then( m => m.TendenciesPage)
+  },
   {
     path: '**', redirectTo: '/error?type=404'
-  }
+  },
+
 ];

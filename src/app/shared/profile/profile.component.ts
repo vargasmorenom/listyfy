@@ -33,12 +33,15 @@ export class ProfileComponent  implements OnInit {
   }
 
   ngOnInit() {
-   
-      this.sessionActiva();
-      this.imagenPerfil(this.info);
-      const currentRouteSnapshot = this.activatedRoute.snapshot;
-      this.page = currentRouteSnapshot.url.join('/'); // Obtiene la ruta como una cadena
-      console.log(this.page);
+      const dataSession = this.sessionActiva();
+      if(dataSession){
+        this.imagenPerfil(dataSession);
+        this.perfil = true;
+      }else{
+        this.dcimg = '../../../assets/logo/perfil02.png';
+        const currentRouteSnapshot = this.activatedRoute.snapshot;
+        this.page = currentRouteSnapshot.url.join('/');
+      }
   }
  mostrarData(id:any){   
   this.popUp.showPopupDinamic({
@@ -59,8 +62,9 @@ imagenPerfil(data:any){
 
 sessionActiva(){
   if(this.storage.exists('usuario')){
-    this.perfil = true;
+     return this.storage.get('usuario');
   }
+  return null;
 }
 
 }
