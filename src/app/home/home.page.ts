@@ -43,7 +43,6 @@ export class HomePage {
 
       this.posted.getAllPosted(this.ini,this.fin).subscribe((data:any)=>{
         this.items = this.items.concat(data);
-        console.log(this.items);
         this.ini ++;
       });
      }
@@ -57,23 +56,29 @@ export class HomePage {
      }
 
   lastScrollTop = 0;
-  isMenuHidden!:boolean;
+  isMenuHidden!: boolean;
+  scrollTimeout: any;
 
   onScroll(event: CustomEvent) {
     const scrollTop = event.detail.scrollTop;
 
+    // Limpiar timeout anterior
+    if (this.scrollTimeout) {
+      clearTimeout(this.scrollTimeout);
+    }
+
     if (scrollTop > this.lastScrollTop + 1) {
       // 👇 Desplazándose hacia abajo → ocultar menú
-      
       this.isMenuHidden = true;
-     // console.log(this.isMenuHidden);
     } else if (scrollTop < this.lastScrollTop - 1) {
       // 👆 Desplazándose hacia arriba → mostrar menú
-      
       this.isMenuHidden = false;
-      //console.log(this.isMenuHidden);
-      
     }
+
+    // Mostrar menú cuando el scroll se detiene (después de 300ms de inactividad)
+    this.scrollTimeout = setTimeout(() => {
+      this.isMenuHidden = false;
+    }, 300);
 
     this.lastScrollTop = scrollTop;
   }

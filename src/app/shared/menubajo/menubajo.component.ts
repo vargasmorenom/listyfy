@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { menuactivo } from 'src/app/configs/menuSession';
-import { IonTabButton, IonIcon, IonLabel, IonTabs, IonTabBar} from "@ionic/angular/standalone";
+import { IonTabButton, IonIcon, IonLabel, IonTabs, IonTabBar, IonItemOptions} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-menubajo',
@@ -16,56 +18,54 @@ export class MenubajoComponent  implements OnInit {
   public menuactivo: any = '';
   public valform!: Boolean;
   @Input() estado: boolean = false;
+  hideFooter = false;
+  lastScrollTop = 0;
+  readonly SCROLL_THRESHOLD = 40;
+  token: string | null = null;
+  menuItems: any[] = [];
 
-  constructor(private routes: Router, public storage: StorageService,private activatedRoute: ActivatedRoute) { }
+  constructor(private navCtrl: NavController,
+            private routes: Router, 
+            private storage: StorageService,
+            private authService: AuthService,
+            private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    if(this.storage.exists('usuario')){
-        const currentRouteSnapshot = this.activatedRoute.snapshot;
-        this.page = currentRouteSnapshot.url.join('/');
-    
-        let valdata = this.asignarImagenes(menuactivo,true);
-        this.menuactivo = this.menuActivoFiltrado(valdata,true);
-    }
-
-        
-  
+  this.menuItems = this.getMenuBySession();
   }
 
+  isActive(url: string): boolean {
+  return this.routes.url === url;
+  }
 
-menuActivoFiltrado(data:any,val:boolean) { return data.filter((item:any) => item.state === true); }
-
- asignarImagenes(menu: any[],valida:boolean) {
-  return menu.map(item => {
-    let imageUrl = '';
-      if (item.url === 2) {
-      const isuser = this.storage.get('usuario');
-      const image = this.storage.get(isuser.id);
-      imageUrl = image.profilePic[0].small;
-    } 
-      
-
-    return { ...item, image: imageUrl };
+  getMenuBySession(): any[] {
+  const isLogged = this.authService.checkToken();
+  return menuactivo.filter(item => {
+      if (item.visibility === 'public') return true;
+      if (item.visibility === 'auth') return isLogged;
+      if (item.visibility === 'guest') return !isLogged;
+      return false;
+   
   });
+
 }
 
-  ruta(valor:number){
-    switch(valor){
-      case 1:
-     this.routes.navigate(['/']);
-     break;
-      case 2:
-     this.routes.navigate(['/perfil']);
-       break;
-      case 3:
-     this.routes.navigate(['/login']);
-       break;
-      case 4:
-     this.routes.navigate(['/register']);
-      break;
-      case 5:
-     this.routes.navigate(['/newlist']);
-    }
+  ruta(valor:string,id:string){
+  if (this.isActive(valor)) return;
+  if(id){
+    this.navCtrl.navigateForward(valor, {
+      queryParams: { id: id }
+    });
+  }else{
+    this.navCtrl.navigateForward(valor);
   }
+    console.log(111);
+  }
+
+  onScroll(event: any) {
+
+  }
+
+
 
 }

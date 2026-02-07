@@ -1,37 +1,46 @@
+export type MenuVisibility = 'public' | 'auth' | 'guest';
+
 export const menuactivo = [
-  { name: 'Home',
-    url: 1,
-    state: true,
+  {
+    name: 'Home',
+    url: '/',
     icon: 'home-outline',
-    image: '',
+    visibility: 'public' // 👈 siempre visible
   },
-  { name: 'Home',
-    url: 1,
-    state: false,
-    icon: 'home-outline',
-    image: '',
+  {
+    name: 'Buscar',
+    url: '/search',
+    icon: 'search-outline',
+    visibility: 'auth'
   },
-  { name: 'Nueva Lista',
-    url: 5,
-    state: true,
+  {
+    name: 'Nueva Lista',
+    url: '/newlist',
     icon: 'add-circle',
-    image: '',
+    visibility: 'auth'
   },
-  { name: 'Perfil',
-    url: 2,
-    state: true,
-    image: '',
+  {
+    name: 'Tendencias',
+    url: '/tendencies',
+    icon: 'analytics-outline',
+    visibility: 'auth'
   },
-    { name: 'Inscripcion',
-    url: 4,
-    state: false,
-    icon:'person-add-outline',
-    image: '',
-  },
-  { name: 'Login',
-    url: 3,
-    state: false,
+  {
+    name: 'Perfil',
+    url: '/perfil',
     icon: 'person-circle-outline',
-    image: '',
+    visibility: 'auth'
   },
+  {
+    name: 'Inscripcion',
+    url: '/register',
+    icon: 'person-add-outline',
+    visibility: 'guest'
+  },
+  {
+    name: 'Login',
+    url: '/login',
+    icon: 'log-in-outline',
+    visibility: 'guest'
+  }
 ];

@@ -4,6 +4,7 @@ import { FormsModule,ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
+import { MenubajoComponent } from './../../shared/menubajo/menubajo.component';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { inscription } from '../../configs/inscription';
 import { InscriptionService } from '../../services/inscription.service';
@@ -19,7 +20,7 @@ import { IonContent,IonItem, IonInput, IonButton, IonIcon,IonCheckbox,IonInputPa
   standalone: true,
   imports: [IonCard, IonText,IonContent,IonItem, IonInput, IonButton,
             IonIcon, FormsModule, ReactiveFormsModule,IonCheckbox,
-            IonInputPasswordToggle, IonList],
+            IonInputPasswordToggle, IonList,MenubajoComponent],
 
 })
 export class InscriptionsPage implements OnInit {
@@ -27,6 +28,7 @@ export class InscriptionsPage implements OnInit {
   backgroundClasses: string[] = ['background-1', 'background-2', 'background-3'];
   currentBackgroundClass: string = this.backgroundClasses[0];
   currentIndex: number = 0;
+  isMenuHidden!: true;
 
   public formCreate:any;
   public form:FormGroup;

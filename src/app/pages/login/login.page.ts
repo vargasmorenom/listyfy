@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule,ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { MenubajoComponent } from './../../shared/menubajo/menubajo.component';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
@@ -19,7 +20,7 @@ import { IonContent,IonItem, IonInput, IonButton, IonIcon,IonInputPasswordToggle
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonCard, IonContent,IonItem, IonInput, IonButton,IonIcon, FormsModule, ReactiveFormsModule, IonInputPasswordToggle]
+  imports: [IonCard, IonContent,IonItem, IonInput, IonButton,IonIcon, FormsModule, ReactiveFormsModule, IonInputPasswordToggle,MenubajoComponent]
 })
 export class LoginPage implements OnInit {
 
@@ -31,6 +32,7 @@ export class LoginPage implements OnInit {
   public form:FormGroup;
   private url:string;
   public logo:string;
+  isMenuHidden!: true;
 
   constructor(public router: Router,
               public formUl: DynamicFormService,

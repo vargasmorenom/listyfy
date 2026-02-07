@@ -10,7 +10,7 @@ export class AuthService {
   isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor() {
-    this.checkToken();
+    
   }
 
   login(token: string) {
@@ -23,9 +23,10 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  checkToken() {
-    const token = localStorage.getItem('AuthToken');
-    this.loggedIn.next(!!token); // true si existe token, false si no
+  checkToken(): boolean {
+    const hasToken = !!localStorage.getItem('AuthToken');
+    this.loggedIn.next(hasToken);
+    return hasToken;
   }
 
   getToken(): string | null {

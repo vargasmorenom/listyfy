@@ -1,17 +1,10 @@
-<ion-tabs>
+<ion-tabs [class.menu-hidden]="estado">
   <ion-tab-bar slot="bottom">
-@for(item of menuactivo; track $index; ) {
-  
-    <ion-tab-button  (click)="ruta(item.url)">
-      @if(item.url === 2){
-        <img src="http://localhost:3000/files/{{item.image}}"/>
-      }
-      @else{
-         <ion-icon name="{{item.icon}}"></ion-icon>
-      }
-      <ion-label>{{item.name}}</ion-label>
-    </ion-tab-button>
-  
-}
+    @for(item of menuItems; track $index) {
+      <ion-tab-button (click)="ruta(item.url,item.id)">
+          <ion-icon name="{{item.icon}}"></ion-icon>
+        <ion-label>{{item.name}}</ion-label>
+      </ion-tab-button>
+    }
   </ion-tab-bar>
 </ion-tabs>

@@ -1,21 +1,45 @@
-ion-tabs{
+ion-tabs {
   position: sticky !important;
-  scroll-behavior: auto;
   contain: none !important;
-}
-ion-tabs img{
-width: 35px;
-border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
 }
 
-ion-icon{
-  color: #303d5c;
+/* Animación de ocultar / mostrar */
+ion-tabs.menu-hidden {
+  transform: translateY(100%);
 }
 
-.md{
-  background-color: #fbfcfd86;
+/* Safe area real del dispositivo */
+ion-tab-bar {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.plus ion-icon{
-  font-size: 2em;
+/* Estilos existentes */
+ion-tabs img {
+  width: 22px;
+  border-radius: 50%;
+}
+
+ion-item.active-item {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+ion-icon {
+  color: #f2f3f5;
+  background-color: transparent;
+  font-size: 1.5em;
+}
+
+.md {
+  background: rgba(20, 20, 20, 0.7);
+  
+}
+
+.plus ion-icon {
+  font-size: 1em;
+}
+ion-label {
+  font-size: 10px;
+  color: #f2f3f5;
 }
