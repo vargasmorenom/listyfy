@@ -1,7 +1,6 @@
 <div class="contentFacebook">
   @for (item of contenido; track $index) {
-    <!-- 🎥 VIDEO -->
-    @if (item.tipo === 'videos') {
+    @if (item.listas.tipo === 'videos') {
       <div class="video" id="{{ item.id }}">
         <app-delete-content [idContent]="item.id" [idpost]="idpost" [session]="true"> </app-delete-content>
 
@@ -11,38 +10,34 @@
           allowfullscreen="true"
           scrolling="no"
           allow="encrypted-media"
-          [src]="item.urlfinal"
+          [src]="item.listas.urlfinal"
         >
         </iframe>
       </div>
     }
-
-    <!-- 🖼 FOTO -->
-    @if (item.tipo === 'photo') {
-      <div class="photo" id="{{ item.id }}">
-        <app-delete-content [idContent]="item.id" [idpost]="idpost" [session]="true"> </app-delete-content>
+    @if (item.listas.tipo === 'photo') {
+      <div class="photo" id="{{ item.listas.id }}">
+        <app-delete-content [idContent]="item.listas.id" [idpost]="idpost" [session]="true"> </app-delete-content>
 
         <div id="fb-root"></div>
 
         <div
           class="fb-post"
           [attr.data-href]="
-            'https://www.facebook.com/photo.php?fbid=' + item.id + '&set=' + item.id1 + '&type=3&ref=embed_post'
+            'https://www.facebook.com/photo.php?fbid=' + item.listas.id + '&set=' + item.listas.id1 + '&type=3&ref=embed_post'
           "
           data-width="340"
           data-show-text="true"
         ></div>
       </div>
     }
-
-    <!-- 🎬 REEL -->
-    @if (item.tipo === 'reel') {
-      <div class="reel" id="{{ item.id }}">
-        <app-delete-content [idContent]="item.id" [idpost]="idpost" [session]="true"> </app-delete-content>
+    @if (item.listas.tipo === 'reel') {
+      <div class="reel" id="{{ item.listas.id }}">
+        <app-delete-content [idContent]="item.listas.id" [idpost]="idpost" [session]="true"> </app-delete-content>
 
         <iframe
-          [src]="item.urlfinal"
-          width="340"
+          [src]="item.listas.urlfinal"
+          width="auto"
           height="476"
           style="border: none; overflow: hidden"
           scrolling="no"
@@ -53,15 +48,13 @@
         </iframe>
       </div>
     }
-
-    <!-- 📝 POST -->
-    @if (item.tipo === 'posts') {
-      <div class="post" id="{{ item.id }}">
-        <app-delete-content [idContent]="item.id" [idpost]="idpost" [session]="true"> </app-delete-content>
+    @if (item.listas.tipo === 'posts') {
+      <div class="post" id="{{ item.listas.id }}">
+        <app-delete-content [idContent]="item.listas.id" [idpost]="idpost" [session]="true"> </app-delete-content>
 
         <div id="fb-root"></div>
 
-        <div class="fb-post" [attr.data-href]="item.url" [attr.data-width]="'500'" data-show-text="true"></div>
+        <div class="fb-post" [attr.data-href]="item.listas.urlfinal" [attr.data-width]="'500'" data-show-text="true"></div>
       </div>
     }
   }

@@ -63,41 +63,48 @@ export class NewcontentpopupComponent implements OnInit {
     this.form.reset();
   }
 
-  enviar() {
-    if (this.form.valid) {
-      const dataContenido = {
-        url: this.form.value.contenid,
-        typePost: this.id.typePost,
-        postId: this.id._id,
-      };
-      this.posted.addContent(dataContenido).subscribe(
-        (response) => {
-          if (response.status === 200) {
-            this.messToast.success(response.body.message, 'Éxito');
-            setTimeout(() => {
-              this.close();
-            }, 2000);
-          }
-          if (response.status === 201) {
-            this.messToast.warning(response.body.message, 'Alerta');
-          }
-          if (response.status === 400) {
-            this.messToast.error(response.body.message, 'error');
-          }
-          if (response.status === 404) {
-            this.messToast.error(response.body.message, 'error');
-          }
-          if (response.status === 500) {
-            this.messToast.error(response.body.message, 'error');
-          }
-        },
-        (error) => {
-          console.error('Error en la solicitud', error);
-          this.messToast.error('Error en la solicitud', 'error');
-        }
-      );
-    } else {
-      this.messToast.error('Formulario inválido');
-    }
+enviar() {
+  if (!this.form.valid) {
+    this.messToast.error('Formulario inválido');
+    return;
   }
+
+  const dataContenido = {
+    url: this.form.value.contenid,
+    typePost: this.id.typePost,
+    postId: this.id._id,
+  };
+
+  this.posted.addContent(dataContenido).subscribe({
+    next: (response) => {
+      const message = response?.body?.message || 'Sin mensaje del servidor';
+
+      switch (response.status) {
+        case 200:
+          this.messToast.success(message, 'Éxito');
+          setTimeout(() => this.close(), 2000);
+          break;
+
+        case 201:
+          this.messToast.warning(message, 'Alerta');
+          break;
+
+        case 400:
+        case 404:
+        case 500:
+          this.messToast.error(message, 'Error');
+          break;
+
+        default:
+          this.messToast.info('Respuesta inesperada');
+      }
+    },
+
+    error: (error) => {
+      console.error('Error en la solicitud', error);
+      this.messToast.error('Error en la solicitud', 'Error');
+    }
+  });
+}
+
 }
