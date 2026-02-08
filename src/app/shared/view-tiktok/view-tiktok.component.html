@@ -8,17 +8,37 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <blockquote
-    class="tiktok-embed"
-    [attr.cite]="'https://www.tiktok.com/' + id.user + '/video/' + id.url"
-    [attr.data-video-id]="id.url"
-    style="max-width: 605px; min-width: 325px"
-  >
-    <section>
-      <a target="_blank" title="{{ id.user }}" href="https://www.tiktok.com/{{ id.user }}?refer=embed"></a>
-    </section>
-  </blockquote>
-  <div class="urlexterna">
-    <a href="https://www.tiktok.com/{{ id.urlTik }}" target="_blank"> ver video en tiktok</a>
-  </div>
+
+  <iframe
+    [src]="getSafeTikTokUrl()"
+    width="325" 
+    height="580"
+    frameborder="0"
+    allowfullscreen
+    scrolling="no"
+    allow="encrypted-media;"
+    title="TikTok video">
+  </iframe>
+
+  <!-- <blockquote
+  class="tiktok-embed"
+  [attr.cite]="'https://www.tiktok.com/@ambos.dos.noticia/video/7602023761260465428?is_from_webapp=1&sender_device=pc'"
+  [attr.data-video-id]="'7602023761260465428'"
+  style="max-width: 605px; min-width: 325px"
+>
+  <section>
+    <a target="_blank"
+       [href]="tiktokUrl">
+    </a>
+  </section>
+</blockquote> -->
+<!-- <blockquote
+  class="tiktok-embed"
+  [attr.cite]="tiktokUrl"
+  [attr.data-video-id]="tiktokId">
+</blockquote> -->
+
+  <!-- <div class="urlexterna">
+    <a [href]="https://www.tiktok.com/@ambos.dos.noticia/video/7602023761260465428?is_from_webapp=1&sender_device=pc" target="_blank"> ver video en tiktok</a>
+  </div> -->
 </ion-content>

@@ -41,7 +41,7 @@ export class SearcherPage implements OnInit {
     private messToast: ToastrService
   ) {}
   ionViewWillEnter() {
-    this.onSearch({ detail: { value: 'pendejos' } });
+    this.onSearch({ detail: { value: '' } });
   }
 
   ngOnInit() {}
