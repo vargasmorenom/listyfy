@@ -1,8 +1,15 @@
 <app-session></app-session>
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)" [scrollEvents]="true">
+
+<ion-content (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="trend-banner">
+    <button class="back-btn" (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+    <span class="tag-name">#{{ tagName }}</span>
+  </div>
   <app-content-list [entityNames]="items"></app-content-list>
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más contenido...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

@@ -13,7 +13,7 @@ export class TendenciesService {
     this.url = environment.servicio[0].url;
   }
 
-  seachTendencies(id: any): Observable<any> {
+  seachTendencies(): Observable<any> {
     return this.http.get<any>(this.url + 'trendingtags');
   }
 

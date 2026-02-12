@@ -7,9 +7,6 @@ import {
   IonIcon,
   IonCard,
   IonCardContent,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardHeader,
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -19,12 +16,8 @@ import {
   standalone: true,
   imports: [
     IonIcon,
-    ViewTiktokComponent,
     IonCard,
     IonCardContent,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardHeader,
     DeleteContentComponent,
   ],
 })

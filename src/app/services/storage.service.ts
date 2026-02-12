@@ -21,7 +21,6 @@ export class StorageService {
       const jsonData = localStorage.getItem(key);
       return jsonData ? JSON.parse(jsonData) : null;
     } catch (error) {
-      console.error('Error al leer desde localStorage', error);
       return null;
     }
   }

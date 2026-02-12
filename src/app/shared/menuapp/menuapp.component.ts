@@ -1,18 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, ActionSheetButton } from '@ionic/angular';
 import {
-  IonAvatar,
   IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
-  IonImg,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonModal,
-  IonTitle,
-  IonToolbar,
   IonActionSheet,
 } from '@ionic/angular/standalone';
 
@@ -21,18 +10,7 @@ import {
   templateUrl: './menuapp.component.html',
   styleUrls: ['./menuapp.component.scss'],
   imports: [
-    IonAvatar,
     IonButton,
-    IonButtons,
-    IonContent,
-    IonHeader,
-    IonImg,
-    IonItem,
-    IonLabel,
-    IonList,
-    IonModal,
-    IonTitle,
-    IonToolbar,
     IonActionSheet,
   ],
   standalone: true,

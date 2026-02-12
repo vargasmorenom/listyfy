@@ -3,14 +3,14 @@ import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
-import { IonIcon, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
+import { IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-content-list',
   templateUrl: './content-list.component.html',
   styleUrls: ['./content-list.component.scss'],
   standalone: true,
-  imports: [IonIcon, IonGrid, IonRow, IonCol],
+  imports: [IonIcon],
 })
 export class ContentListComponent implements OnInit {
   @Input() entityNames: Array<any> = [];

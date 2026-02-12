@@ -4,13 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { heart, heartOutline, apps } from 'ionicons/icons';
 import { menuActive } from 'src/app/configs/menuActive';
 import { ActionSheetServiceService } from 'src/app/services/action-sheet-service.service';
-import { IonHeader, IonImg, IonIcon, IonButton, IonActionSheet } from '@ionic/angular/standalone';
+import { IonHeader, IonImg, IonIcon, IonButton} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-session',
   templateUrl: './session.component.html',
   styleUrls: ['./session.component.scss'],
-  imports: [IonHeader, IonImg, IonIcon, IonButton, IonActionSheet],
+  imports: [IonHeader, IonImg, IonIcon, IonButton],
 })
 export class SessionComponent implements OnInit {
   public saludo: string = 'Hola a todos';

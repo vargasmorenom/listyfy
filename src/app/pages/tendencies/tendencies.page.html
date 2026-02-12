@@ -16,5 +16,10 @@
       </ion-badge>
     </ion-item>
   </ion-list>
+
+  <ion-infinite-scroll [disabled]="allLoaded" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Cargando más tendencias...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 <app-menubajo [estado]="isMenuHidden"></app-menubajo>
