@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
@@ -36,7 +36,6 @@ import {
     IonInput,
     IonButton,
     IonIcon,
-    FormsModule,
     ReactiveFormsModule,
     IonCheckbox,
     IonInputPasswordToggle,
@@ -58,7 +57,6 @@ export class InscriptionsPage implements OnInit {
 
   countries: any[] = [];
   filtered: any[] = [];
-  searchText: string = '';
   pp: any = [];
 
   constructor(
@@ -83,7 +81,7 @@ export class InscriptionsPage implements OnInit {
   }
 
   selectCountry(country: any) {
-    this.searchText = country.nameES;
+    this.form.get('pais')?.setValue(country.nameES);
     this.filtered = []; // Oculta resultados
     this.codtelefono = country.phoneCode;
   }
@@ -130,7 +128,7 @@ export class InscriptionsPage implements OnInit {
         if (datos.status == 201) {
           this.messToast.success('se envio un correo de verificacion a ' + this.form.value.email);
           setTimeout(() => {
-            //    this.router.navigate(['/login'])
+               this.router.navigate(['/verificacion'])
           }, 2000);
         } else {
           this.messToast.warning('Error', datos.body.message);

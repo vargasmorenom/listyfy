@@ -6,8 +6,6 @@ import { YoutubeComponent } from '../youtube/youtube.component';
 import { LinkedlnComponent } from '../linkedln/linkedln.component';
 import { TiktokComponent } from '../tiktok/tiktok.component';
 
-import { IonItem } from '@ionic/angular/standalone';
-
 @Component({
   selector: 'app-showcontent',
   templateUrl: './showcontent.component.html',
@@ -18,8 +16,7 @@ import { IonItem } from '@ionic/angular/standalone';
     FacebookComponent,
     LinkedlnComponent,
     YoutubeComponent,
-    InstagramComponent,
-    IonItem,
+    InstagramComponent
   ],
   standalone: true,
 })

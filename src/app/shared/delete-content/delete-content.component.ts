@@ -2,13 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { ToastrService } from 'ngx-toastr';
 import { AlertController } from '@ionic/angular';
-import { IonButton, IonAlert, IonItem, IonIcon } from '@ionic/angular/standalone';
+import { IonButton, IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-delete-content',
   templateUrl: './delete-content.component.html',
   styleUrls: ['./delete-content.component.scss'],
-  imports: [IonButton, IonAlert, IonItem, IonIcon],
+  imports: [IonButton, IonIcon],
   standalone: true,
 })
 export class DeleteContentComponent implements OnInit {

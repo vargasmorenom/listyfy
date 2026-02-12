@@ -15,14 +15,14 @@ export class DynamicFormService {
 
       if (field.validations) {
         field.validations.forEach((validation) => {
-          if (validation.type === 'required') validations.push(Validators.required);
+          if (validation.type === 'required') validations.push(field.type === 'checkbox' ? Validators.requiredTrue : Validators.required);
           if (validation.type === 'minlength') validations.push(Validators.minLength(validation.value));
           if (validation.type === 'maxlength') validations.push(Validators.maxLength(validation.value));
           if (validation.type === 'pattern') validations.push(Validators.pattern(validation.value));
         });
       }
 
-      let initialValue = initialValues[field.name] ?? '';
+      let initialValue = initialValues[field.name] ?? (field.type === 'checkbox' ? false : '');
 
       if (field.type === 'select' || field.type === 'radio') {
         if (initialValues[field.name]) {
