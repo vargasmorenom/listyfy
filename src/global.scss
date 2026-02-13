@@ -37,11 +37,20 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
-// :root {
-//   --color-primario: #3a7ff3;
-//   --color-secundario: #ffca2c;
-//   --texto-color: #333;
-// }
+:root {
+  /* Variables Globales de la App */
+  --app-color-primario: #3a7ff3;
+  --app-color-secundario: #ffca2c;
+  --app-color-texto: #333333;
+  --app-fuente-principal: 'Roboto', 'Helvetica Neue', sans-serif;
+
+  /* Variables Específicas (Alertas) */
+  --app-alert-bg: #f8d7da;
+  --app-alert-text: #721c24;
+
+  /*variables custom */
+  --app-listyfy-color:#303d5c;
+}
 
 .header-content {
   position: absolute;
@@ -57,8 +66,8 @@ ion-alert.custom-alert {
 }
 ion-alert.alert-head {
   --text-align: center;
-  --background: #f8d7da;
-  --color: #721c24;
+  --background: var(--app-alert-bg);
+  --color: var(--app-alert-text);
 }
 .alert-head.sc-ion-alert-md {
   text-align: center !important;

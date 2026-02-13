@@ -1,38 +1,75 @@
-ion-button {
-  --background: #313e5d;
-  --background-hover: #f8fdfb;
-  --background-activated: #b3f488;
-  --background-focused: #cef488;
-  --color: rgb(247, 247, 250);
-  --border-radius: 5px;
-  --border-color: #000;
-  --border-style: solid;
-  --border-width: 1px;
-
-  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-
-  --ripple-color: deeppink;
-
-  --padding-top: 10px;
-  --padding-bottom: 10px;
+ion-content{
+   --background: #d4d4df61;
 }
 
-li ion-icon {
-  margin-right: 0.6em;
+.form-container {
+  width: 92%;
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
 }
+
+/* Campo */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Input visual moderno */
+.input-item {
+  --background: #ffffff;
+  --border-radius: 14px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.05);
+}
+
+ion-input,
+ion-textarea {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+ion-label {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+
+
+/* Info message */
 .info-message {
-  width: 80%;
-  margin: 2px auto;
-  font-size: 0.8em;
-  background-color: greenyellow;
-  padding: 0.5em;
+  font-size: 0.75rem;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
 }
-.error {
-  width: 80%;
-  margin: 2px auto;
-  font-size: 0.8em;
-  color: white;
-  font-weight: bold;
-  background-color: rgb(189, 49, 49);
-  padding: 0.5em;
+
+/* Error elegante */
+.error-message {
+  font-size: 0.75rem;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Botón moderno */
+.submit-btn {
+  margin-top: 1rem;
+
+  --background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  --color: #fff;
+  --border-radius: 14px;
+  --box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+}
+
+.submit-btn:disabled {
+  --background: #cbd5e1;
+  --box-shadow: none;
 }

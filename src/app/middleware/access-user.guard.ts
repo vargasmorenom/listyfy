@@ -8,9 +8,9 @@ export const accessUserGuard: CanActivateFn = (route, state) => {
 
   const iduser = storageService.get('usuario');
 
-  if (storageService.exists(iduser.id)) {
+  if (iduser && storageService.exists(iduser.id)) {
     return true;
   }
-  router.navigate(['/']);
+  router.navigate(['/login']);
   return false;
 };
