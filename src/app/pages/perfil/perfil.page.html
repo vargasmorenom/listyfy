@@ -1,6 +1,5 @@
-<app-session></app-session>
 <ion-content [fullscreen]="true">
-  <app-profile [info]="perfilSession"></app-profile>
+  <app-profile [info]="perfilSession" [session]="session"></app-profile>
   <div class="contenidoapp">
     <ion-segment [(ngModel)]="selectedTab" value="info">
       <ion-segment-button value="info">
@@ -13,8 +12,9 @@
 
     <div *ngIf="selectedTab === 'info'">
       <app-info-perfil [perfilSession]="perfilSession"></app-info-perfil>
-
+     @if(session){
       <ion-button (click)="showWelcome(perfilSession)" expand="block">editar</ion-button>
+     }
     </div>
 
     <div class="galeria" *ngIf="selectedTab === 'galeria'">
@@ -28,4 +28,3 @@
     </div>
   </div>
 </ion-content>
-<app-menubajo></app-menubajo>

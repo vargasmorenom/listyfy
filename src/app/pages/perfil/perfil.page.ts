@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { map, tap } from 'rxjs/operators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionComponent } from 'src/app/shared/session/session.component';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -66,7 +67,7 @@ export class PerfilPage implements OnInit {
   public selectedTab: string = 'info';
   public listasPerfil: any;
   public perfileData: any;
-  public errorMessage: string = '';
+  public session :boolean = false;
   public perfilSession: any = [];
   public items: any[] = [];
   public idConsult!: string;
@@ -86,26 +87,32 @@ export class PerfilPage implements OnInit {
   }
 
   ngOnInit() {
-    this.param.queryParams.subscribe((parametro: any) => {
-      if (!parametro['id']) {
-        const token = this.authService.getToken();
-        if (token) {
-          const idsession = this.storage.get('usuario');
-          this.dataPerfil(idsession.id);
-        } else {
-          this.router.navigate(['/']);
-        }
-      }
-      if (parametro['id']) {
-        this.dataPerfil(parametro['id']);
-      }
-    });
+  this.session = this.authService.isSessionValid();
+
+  this.param.queryParams.subscribe(params => {
+    const paramId = params['id'];
+
+    if (paramId) {
+      this.dataPerfil(paramId);
+      return;
+    }
+
+    if (!this.session) {
+      this.router.navigate(['/']);
+      return;
+    }
+
+    const user = this.storage.get('usuario');
+    if (user?.id) {
+      this.dataPerfil(user.id);
+    }
+  });
   }
 
   showWelcome(id: any) {
     this.popUp.showPopupDinamic(
       {
-        title: 'Administracion de Contenido',
+        title: 'Editor de Perfil',
         message: 'Nuevo Contenido',
         confirmText: '',
         id: id,

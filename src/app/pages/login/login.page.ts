@@ -89,13 +89,12 @@ export class LoginPage implements OnInit {
       if (datos.status === 200) {
         const token = generarToken();
         const usuario = { user: datos.body.usuario, id: datos.body.id, valores: token };
-
         this.storage.set('usuario', usuario);
         this.auth.login(token);
         this.storage.set(datos.body.id, datos.body.perfil);
         this.messToast.success('Bienvenido a ListyFy : ' + ' ' + this.form.value.username);
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/', {replaceUrl: true})
         }, 2000);
       } else {
         this.messToast.warning('Se presenta un error en el login');

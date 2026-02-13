@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MenubajoComponent } from '../shared/menubajo/menubajo.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
-import { SessionComponent } from 'src/app/shared/session/session.component';
 import { PopupService } from '../services/popup.service';
 import { PostedsService } from '../services/posteds.service';
+import { MenuStateService } from '../services/menu-state.service';
 
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
@@ -17,12 +16,10 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/
   styleUrls: ['home.page.scss'],
   imports: [
     IonInfiniteScroll,
-    MenubajoComponent,
     IonInfiniteScrollContent,
     ContentListComponent,
     IonContent,
     CommonModule,
-    SessionComponent,
   ],
 })
 export class HomePage {
@@ -32,7 +29,8 @@ export class HomePage {
 
   constructor(
     private popupService: PopupService,
-    private posted: PostedsService
+    private posted: PostedsService,
+    private menuState: MenuStateService
   ) {
     addIcons({ heartOutline, heart });
   }
@@ -56,28 +54,23 @@ export class HomePage {
   }
 
   lastScrollTop = 0;
-  isMenuHidden!: boolean;
   scrollTimeout: any;
 
   onScroll(event: CustomEvent) {
     const scrollTop = event.detail.scrollTop;
 
-    // Limpiar timeout anterior
     if (this.scrollTimeout) {
       clearTimeout(this.scrollTimeout);
     }
 
     if (scrollTop > this.lastScrollTop + 1) {
-      // 👇 Desplazándose hacia abajo → ocultar menú
-      this.isMenuHidden = true;
+      this.menuState.setMenuHidden(true);
     } else if (scrollTop < this.lastScrollTop - 1) {
-      // 👆 Desplazándose hacia arriba → mostrar menú
-      this.isMenuHidden = false;
+      this.menuState.setMenuHidden(false);
     }
 
-    // Mostrar menú cuando el scroll se detiene (después de 300ms de inactividad)
     this.scrollTimeout = setTimeout(() => {
-      this.isMenuHidden = false;
+      this.menuState.setMenuHidden(false);
     }, 300);
 
     this.lastScrollTop = scrollTop;

@@ -1,21 +1,17 @@
-ion-tabs {
+ion-tab-bar {
   position: sticky !important;
   contain: none !important;
   transition: transform 0.3s ease-in-out;
-}
-
-/* Animación de ocultar / mostrar */
-ion-tabs.menu-hidden {
-  transform: translateY(100%);
-}
-
-/* Safe area real del dispositivo */
-ion-tab-bar {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* Animación de ocultar / mostrar */
+ion-tab-bar.menu-hidden {
+  transform: translateY(100%);
+}
+
 /* Estilos existentes */
-ion-tabs img {
+ion-tab-bar img {
   width: 22px;
   border-radius: 50%;
 }

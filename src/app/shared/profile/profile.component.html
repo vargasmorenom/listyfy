@@ -1,17 +1,15 @@
 <div class="menu-header-bg">
   @for (item of info.profilePic; track $index) {
-    @if (perfil) {
-      <div class="editImagen" (click)="mostrarData(info)">
+    <div
+      class="imagen-container"
+      [class.editable]="session"
+      (click)="session ? mostrarData(info) : null"
+    >
+      @if (session) {
         <ion-icon name="image-outline"></ion-icon>
-        <img class="perfilimg" src="http://localhost:3000/files/{{ item.medium }}" />
-      </div>
-    }
-
-    @if (!perfil) {
-      <div class="editImagenof">
-        <img class="perfilimg" src="http://localhost:3000/files/{{ item.medium }}" />
-      </div>
-    }
+      }
+      <img class="perfilimg" [src]="urlBack + item.medium" />
+    </div>
   }
 </div>
 <div class="headerInterno">
@@ -28,23 +26,19 @@
       <ion-col>
         <ion-button expand="block">
           <ion-icon name="people" slot="start"></ion-icon>
-          <strong>Seguir</strong></ion-button
-        >
+          <strong>Seguir</strong>
+        </ion-button>
       </ion-col>
       <ion-col>
         <ion-button expand="block">
           <ion-icon name="heart" slot="start"></ion-icon>
-          <strong>Me Gusta</strong></ion-button
-        >
+          <strong>Me Gusta</strong>
+        </ion-button>
       </ion-col>
     </ion-row>
     <ion-row class="staticDataValue">
-      <ion-col
-        ><strong>{{ info.followersNumber }}</strong></ion-col
-      >
-      <ion-col
-        ><strong>{{ info.likeNumber }}</strong></ion-col
-      >
+      <ion-col><strong>{{ info.followersNumber }}</strong></ion-col>
+      <ion-col><strong>{{ info.likeNumber }}</strong></ion-col>
     </ion-row>
   </ion-grid>
 </div>
