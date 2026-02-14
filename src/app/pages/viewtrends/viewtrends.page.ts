@@ -2,9 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { MenubajoComponent } from '../../shared/menubajo/menubajo.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
-import { SessionComponent } from 'src/app/shared/session/session.component';
 import { PostedsService } from '../../services/posteds.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +17,7 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent, IonIcon } from
   templateUrl: './viewtrends.page.html',
   styleUrls: ['./viewtrends.page.scss'],
   standalone: true,
-  imports: [IonContent, IonIcon, CommonModule, MenubajoComponent, ContentListComponent, SessionComponent, IonInfiniteScroll, IonInfiniteScrollContent]
+  imports: [IonContent, IonIcon, CommonModule, BackComponent, ContentListComponent, IonInfiniteScroll, IonInfiniteScrollContent]
 })
 export class ViewtrendsPage implements OnInit {
 

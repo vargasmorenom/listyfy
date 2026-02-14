@@ -70,13 +70,13 @@
   }
 
   .descriptionperfil {
-    font-size: 1em;
-    text-align: justify;
-    background-color: var(--description-bg);
-    border: 2px solid var(--description-border);
-    margin: 1em;
-    border-radius: 0.5em;
-    padding: 1rem;
+  font-size: 1em;
+  text-align: left;
+  background-color: var(--description-bg);
+  border: 2px solid var(--description-border);
+  margin: .5em;
+  border-radius: 0.5em;
+  padding: .7em;
   }
 }
 

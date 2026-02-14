@@ -9,7 +9,7 @@ export const posted = [
     name: 'description',
     label: 'descripcion',
     type: 'textarea',
-    validations: [{ type: 'required' }, { type: 'pattern', value: /^[A-Za-z-ZñÑáéíóúÁÉÍÓÚ0-9\s]{2,300}$/ }],
+    validations: [{ type: 'required' }, { type: 'maxlength', value: 600 }],
   },
   {
     name: 'typePost',

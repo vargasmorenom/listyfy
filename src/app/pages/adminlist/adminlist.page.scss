@@ -1,13 +1,14 @@
 ion-content {
-  --background: #c3c5c9; /* fondo general claro */
-  font-family: 'Inter', 'Roboto', sans-serif;
-  color: #2c2c2c; /* texto principal */
+  --background: linear-gradient(
+    180deg,
+    #e9ecf2 0%,
+    #dfe3ea 100%
+  );
 }
-
 /* ===== Perfil del usuario ===== */
 .userVal {
   width: 95%;
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
 .linkprofile {
@@ -15,16 +16,14 @@ ion-content {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-  border-left: 4px solid #303d5c; /* detalle con color base */
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: #ffffffee;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-top: 3px solid #303d5c;
 }
-
 .linkprofile:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
@@ -49,22 +48,29 @@ ion-content {
   margin: 16px;
   border-radius: 20px;
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s ease;
-  border-top: 4px solid #303d5c; /* acento visual */
+  background: #ffffffee; /* ligeramente translúcido */
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-top: 4px solid #303d5c;
 }
 
 .content-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 .shadow-img {
   width: 100%;
-  border-radius: 14px;
-  margin: 10px 0;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  margin: 12px 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.shadow-img:hover {
+  transform: scale(1.02);
 }
 
 /* ===== Headers y títulos ===== */
@@ -73,17 +79,17 @@ ion-card-header {
 }
 
 ion-card-title {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
-  color: #303d5c; /* títulos con tu color base */
+  letter-spacing: -0.2px;
+  text-transform: capitalize;
 }
+
 
 /* ===== Contenido ===== */
 ion-card-content {
   font-size: 14px;
-  line-height: 1.6;
-  padding: 0 16px 12px;
-  color: #444;
+  line-height: 1.7;
 }
 
 ion-card-content strong {
@@ -91,15 +97,21 @@ ion-card-content strong {
 }
 
 /* ===== Botón menú usuario ===== */
+.card-usuario {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .card-usuario ion-button {
   --border-radius: 50%;
   --padding-start: 6px;
   --padding-end: 6px;
-  --border-color: #ddd;
+  --border-color: #dddddd00;
   --color: #303d5c; /* icono con tu color base */
 }
 
 /* ===== Social Buttons ===== */
+
 .social-buttons {
   display: flex;
   justify-content: center; /* centrado horizontal */
@@ -111,28 +123,26 @@ ion-card-content strong {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 12px;
-  background: #f1f5f9;
-  border-radius: 14px;
-  margin: 10px;
+  gap: 8px;
+  padding: 14px;
+  background: linear-gradient(135deg, #303d5c, #445a8a);
+  border-radius: 16px;
+  margin: 12px;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  color: #303d5c; /* texto con color base */
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .masContent ion-icon {
   font-size: 20px;
-  color: #f39c12; /* acento dorado */
+  color: #f39c12;
 }
 
 .masContent:hover {
-  background: #e6eef9;
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(48, 61, 92, 0.3);
 }
 
 /* ===== Submenú popover ===== */
@@ -146,13 +156,16 @@ ion-card-content strong {
   background: #f3f3f3;
 }
 ion-chip {
-  margin: 4px 4px 4px 0;
-  --background: #e0e7ff; /* color de fondo suave */
-  --color: #1e40af; /* texto con color base */
+  margin: 4px 6px 4px 0;
+  --background: #eef2ff;
+  --color: #303d5c;
   font-size: 12px;
   font-weight: 500;
+  border-radius: 20px;
+  padding: 0 8px;
+  transition: transform 0.2s ease;
 }
-ion-chip a {
-  text-decoration: none;
-  color: inherit;
+
+ion-chip:hover {
+  transform: scale(1.05);
 }

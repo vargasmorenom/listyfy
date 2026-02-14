@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SessionComponent } from 'src/app/shared/session/session.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
@@ -17,7 +17,7 @@ import { IonInfiniteScroll, IonInfiniteScrollContent, IonContent } from '@ionic/
     IonInfiniteScrollContent,
     IonContent,
     CommonModule,
-    SessionComponent,
+    BackComponent,
   ],
 })
 export class ContentPage implements OnInit {

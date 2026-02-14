@@ -36,7 +36,18 @@
         @if (item.type === 'textarea') {
           <div class="input-group">
             <ion-item>
-              <ion-textarea labelPlacement="stacked" label="{{ item.label }}:" formControlName="{{ item.name }}">
+              <ion-textarea
+                class="{{item.class}}"
+                labelPlacement="stacked"
+                [attr.ol]="true"
+                label="{{ item.label }}:"
+                formControlName="{{ item.name }}"
+                [maxlength]="300"
+                [counter]="true"
+                counterFormatter="remaining"
+                [autoGrow]="true"
+                [rows]="6"
+              >
               </ion-textarea>
             </ion-item>
           </div>

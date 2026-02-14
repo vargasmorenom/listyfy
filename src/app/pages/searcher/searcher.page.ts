@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SearcherPageService } from 'src/app/services/search.service';
-import { SessionComponent } from 'src/app/shared/session/session.component';
-import { MenubajoComponent } from '../../shared/menubajo/menubajo.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
 import {
   IonContent,
@@ -22,9 +21,8 @@ import {
     IonContent,
     CommonModule,
     FormsModule,
-    SessionComponent,
+    BackComponent,
     IonSearchbar,
-    MenubajoComponent,
     IonInfiniteScrollContent,
     IonInfiniteScroll,
     ContentListComponent,

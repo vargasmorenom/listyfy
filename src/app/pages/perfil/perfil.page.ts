@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { map, tap } from 'rxjs/operators';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SessionComponent } from 'src/app/shared/session/session.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { ProfileComponent } from 'src/app/shared/profile/profile.component';
-import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
 import { InfoPerfilComponent } from 'src/app/shared/info-perfil/info-perfil.component';
 import { ContentListComponent } from 'src/app/shared/content-list/content-list.component';
 import { PopupService } from 'src/app/services/popup.service';
@@ -50,13 +49,12 @@ import {
     IonContent,
     CommonModule,
     FormsModule,
-    SessionComponent,
+    BackComponent,
     ContentListComponent,
     InfoPerfilComponent,
     IonLabel,
     ReactiveFormsModule,
     ProfileComponent,
-    MenubajoComponent,
     IonSegment,
     IonSegmentButton,
   ],

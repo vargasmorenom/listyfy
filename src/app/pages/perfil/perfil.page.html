@@ -1,9 +1,10 @@
 <ion-content [fullscreen]="true">
+  <app-back></app-back>
   <app-profile [info]="perfilSession" [session]="session"></app-profile>
   <div class="contenidoapp">
     <ion-segment [(ngModel)]="selectedTab" value="info">
       <ion-segment-button value="info">
-        <ion-label>Info</ion-label>
+        <ion-label>Informacion</ion-label>
       </ion-segment-button>
       <ion-segment-button value="galeria">
         <ion-label>Contenido</ion-label>

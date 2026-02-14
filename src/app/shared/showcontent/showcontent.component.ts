@@ -22,7 +22,13 @@ import { TiktokComponent } from '../tiktok/tiktok.component';
 })
 export class ShowcontentComponent implements OnInit {
   @Input() content: Array<any> = [];
-  @Input() typecontent: number = 0;
+  @Input() set typecontent(value: number | string) {
+    this._typecontent = Number(value);
+  }
+  get typecontent(): number {
+    return this._typecontent;
+  }
+  private _typecontent: number = 0;
   @Input() idpost: string = '';
 
   constructor() {}
