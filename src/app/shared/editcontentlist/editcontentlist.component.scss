@@ -351,3 +351,21 @@ ion-button:disabled {
   --background: #cbd5e1;
   box-shadow: none;
 }
+
+
+textarea[ol] {
+ width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  resize: none; /* evita que lo redimensionen */
+  transition: all 0.25s ease;
+}
+
+textarea[ol]:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
+}

@@ -3,10 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
 import { DynamicFormService } from 'src/app/services/dynamicFormService';
 import { posted } from '../../configs/posted';
-import { SessionComponent } from './../../shared/session/session.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -42,8 +41,7 @@ import {
     IonSelect,
     IonSelectOption,
     IonTextarea,
-    SessionComponent,
-    MenubajoComponent,
+    BackComponent,
     IonRadioGroup,
     IonRadio,
     IonList,

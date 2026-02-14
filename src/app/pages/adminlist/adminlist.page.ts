@@ -6,10 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostedsService } from 'src/app/services/posteds.service';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from 'src/app/services/storage.service';
-import { SessionComponent } from 'src/app/shared/session/session.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { ScriptLoaderService } from 'src/app/services/scriptloader.service';
 import { ShowcontentComponent } from 'src/app/shared/showcontent/showcontent.component';
-import { MenubajoComponent } from 'src/app/shared/menubajo/menubajo.component';
 import { PopupService } from 'src/app/services/popup.service';
 import { SocialmediaComponent } from 'src/app/shared/socialmedia/socialmedia.component';
 import { LikescountComponent } from 'src/app/shared/likescount/likescount.component';
@@ -53,8 +52,7 @@ import {
     IonContent,
     CommonModule,
     FormsModule,
-    SessionComponent,
-    MenubajoComponent,
+    BackComponent,
     IonIcon,
     IonGrid,
     IonCol,

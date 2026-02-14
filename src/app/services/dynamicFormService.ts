@@ -24,6 +24,10 @@ export class DynamicFormService {
 
       let initialValue = initialValues[field.name] ?? (field.type === 'checkbox' ? false : '');
 
+      if (field.type === 'text' && Array.isArray(initialValue)) {
+        initialValue = initialValue.map((item: any) => (typeof item === 'object' && item.name ? item.name : item)).join(', ');
+      }
+
       if (field.type === 'select' || field.type === 'radio') {
         if (initialValues[field.name]) {
           const valores = initialValues[field.name];

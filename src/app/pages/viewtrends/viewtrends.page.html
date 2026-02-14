@@ -1,8 +1,6 @@
 <ion-content (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <app-back></app-back>
   <div class="trend-banner">
-    <button class="back-btn" (click)="goBack()">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </button>
     <span class="tag-name">#{{ tagName }}</span>
   </div>
   <app-content-list [entityNames]="items"></app-content-list>

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavController, InfiniteScrollCustomEvent } from '@ionic/angular'
-import { SessionComponent } from 'src/app/shared/session/session.component';
+import { BackComponent } from 'src/app/shared/back/back.component';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MenubajoComponent } from '../../shared/menubajo/menubajo.component';
 import {TendenciesService} from '../../services/tendencies.service';
 import { IonContent, IonBadge, IonLabel, IonItem, IonList, IonInfiniteScroll, IonInfiniteScrollContent } from '@ionic/angular/standalone';
 
@@ -13,7 +12,7 @@ import { IonContent, IonBadge, IonLabel, IonItem, IonList, IonInfiniteScroll, Io
   templateUrl: './tendencies.page.html',
   styleUrls: ['./tendencies.page.scss'],
   standalone: true,
-  imports: [IonContent, MenubajoComponent, SessionComponent, CommonModule, FormsModule, IonBadge, IonLabel, IonItem, IonList, IonInfiniteScroll, IonInfiniteScrollContent],
+  imports: [IonContent, BackComponent, CommonModule, FormsModule, IonBadge, IonLabel, IonItem, IonList, IonInfiniteScroll, IonInfiniteScrollContent],
 })
 export class TendenciesPage implements OnInit {
    isMenuHidden!: true;
