@@ -26,13 +26,14 @@
     } @for (itema of data.imagen; track $index; ) {
     <ion-img class="shadow-img" [src]="urlfiles + itema.medium " alt="Imagen destacada"></ion-img>
     }
+    <app-likescount [count]="likeCount" [liked]="liked" (likeToggled)="toggleLike()"></app-likescount>
 
     <ion-card-header>
       <ion-card-title>{{data.name}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <p>Tipo de Contenido :<strong>{{data.typePostName}}</strong></p>
+      <p class="tipocontent">Tipo de Contenido : <strong>{{data.typePostName}}</strong></p>
       <p>{{data.description}}</p>
       @for (item of data.tags; track $index; ) {
       <ion-chip color="tertiary">
@@ -42,12 +43,11 @@
     </ion-card-content>
 
     <ion-grid>
-      <ion-col size="2">
-        <app-likescount [count]="10" [liked]="true"></app-likescount>
-      </ion-col>
-      <ion-col size="8" class="social-buttons">
-        <app-socialmedia [red]="1"></app-socialmedia>
-      </ion-col>
+      <ion-row>
+        <ion-col size="12" class="social-buttons">
+          <app-socialmedia [red]="1"></app-socialmedia>
+        </ion-col>
+      </ion-row>
     </ion-grid>
     @if(usuario?.id == data.postedBy) {
     <div class="masContent" (click)="Addcontent(data)">

@@ -1,4 +1,11 @@
-<ion-button fill="clear" size="large" (click)="toggleLike()">
-  <ion-icon [name]="liked ? 'heart' : 'heart-outline'" slot="icon-only" color="danger"></ion-icon>
+<div class="like-container" [class.liked]="liked" (click)="toggleLike()">
+  <div class="likesSection">
+    <ion-icon [name]="liked ? 'heart' : 'heart-outline'" color="danger" class="like-icon"></ion-icon>
   <span class="like-count">{{ count }}</span>
-</ion-button>
+  </div>
+  <div class="viewSection">
+    <ion-icon [name]="'eye-outline'" class="view-icon"></ion-icon>
+  <span class="view-count">{{ count }}</span>
+  </div>
+  
+</div>

@@ -1,21 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IonButton, IonIcon } from '@ionic/angular/standalone';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-likescount',
   templateUrl: './likescount.component.html',
   styleUrls: ['./likescount.component.scss'],
   standalone: true,
-  imports: [IonButton, IonIcon],
+  imports: [IonIcon],
 })
 export class LikescountComponent implements OnInit {
   @Input() count: number = 0;
   @Input() liked: boolean = false;
+  @Output() likeToggled = new EventEmitter<void>();
+
   constructor() {}
 
   ngOnInit() {}
 
   toggleLike() {
-    this.liked = !this.liked;
+    this.likeToggled.emit();
   }
 }

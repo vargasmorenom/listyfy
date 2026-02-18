@@ -96,6 +96,22 @@ ion-card-content strong {
   color: #111;
 }
 
+.tipocontent {
+  display: block;
+  background: #303d5c;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.tipocontent strong {
+  color: #f39c12;
+}
+
 /* ===== Botón menú usuario ===== */
 .card-usuario {
   display: flex;

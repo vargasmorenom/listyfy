@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopoverController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,9 @@ import { ShowcontentComponent } from 'src/app/shared/showcontent/showcontent.com
 import { PopupService } from 'src/app/services/popup.service';
 import { SocialmediaComponent } from 'src/app/shared/socialmedia/socialmedia.component';
 import { LikescountComponent } from 'src/app/shared/likescount/likescount.component';
+import { LikeService } from 'src/app/services/like.service';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { EditcontentlistComponent } from 'src/app/shared/editcontentlist/editcontentlist.component';
 import { NewcontentpopupComponent } from 'src/app/shared/newcontentpopup/newcontentpopup.component';
@@ -21,6 +24,7 @@ import {
   IonChip,
   IonCard,
   IonCol,
+  IonRow,
   IonGrid,
   IonCardHeader,
   IonList,
@@ -55,12 +59,13 @@ import {
     BackComponent,
     IonIcon,
     IonGrid,
+    IonRow,
     IonCol,
     IonImg,
     IonChip,
   ],
 })
-export class AdminlistPage implements OnInit, AfterViewInit {
+export class AdminlistPage implements OnInit, AfterViewInit, OnDestroy {
   public id!: string;
   public data: any = [];
   public datacont: any;
@@ -69,6 +74,7 @@ export class AdminlistPage implements OnInit, AfterViewInit {
   public dataprueba = 'disabled';
   public likeCount = 0;
   public urlfiles = environment.servicio[0].urlfiles;
+  private socketSubs: Subscription[] = [];
 
   constructor(
     public popUp: PopupService,
@@ -78,7 +84,8 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     private navegar: Router,
     private posted: PostedsService,
     public messToast: ToastrService,
-    private storage: StorageService
+    private storage: StorageService,
+    private likeService: LikeService
   ) {}
   validarEdit() {
     return this.storage.get('usuario');
@@ -86,8 +93,38 @@ export class AdminlistPage implements OnInit, AfterViewInit {
   liked = false;
 
   toggleLike() {
-    this.liked = !this.liked;
-    this.likeCount += this.liked ? 1 : -1;
+    const userId = this.usuario?.id;
+    console.log('[Like] toggleLike - userId:', userId, 'postId:', this.data._id);
+    if (!userId) {
+      this.messToast.warning('Debes iniciar sesión para dar like', 'Aviso');
+      return;
+    }
+    this.likeService.toggleLikeHttp(this.data._id, userId).subscribe({
+      next: (res: any) => {
+        console.log('[Like] HTTP respuesta:', res);
+        this.liked = res.action === 'like';
+        this.likeCount = res.newLikeCount;
+      },
+      error: (err) => {
+        console.error('[Like] HTTP error:', err);
+        this.messToast.error('Error al procesar el like', 'Error');
+      }
+    });
+  }
+
+  cargarLikes(idPost: string) {
+    const userId = this.usuario?.id;
+    console.log('[Like] cargarLikes - postId:', idPost, 'userId:', userId);
+    this.likeService.getLikes(idPost, userId).subscribe({
+      next: (res: any) => {
+        console.log('[Like] getLikes respuesta:', res);
+        this.likeCount = res.likeCount || 0;
+        this.liked = res.liked || false;
+      },
+      error: (err) => {
+        console.error('[Like] getLikes error:', err);
+      }
+    });
   }
 
   async Addcontent(id: any) {
@@ -102,7 +139,7 @@ export class AdminlistPage implements OnInit, AfterViewInit {
     );
 
     if (result?.data) {
-      this.cargarDatos();
+      this.BuscarContent(this.id);
     } else if (result?.cancelled) {
       console.warn('Modal no se abrió porque ya existía uno');
     } else if (result?.error) {
@@ -112,10 +149,37 @@ export class AdminlistPage implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.cargarDatos();
+    this.escucharSocketLikes();
+  }
+
+  escucharSocketLikes() {
+    console.log('[Socket] Suscribiendo a eventos de like...');
+
+    const likeUpdatedSub = this.likeService.onLikeUpdated().subscribe((update) => {
+      console.log('[Socket] like:updated recibido:', update);
+      if (update.postId === this.data._id) {
+        this.likeCount = update.newLikeCount;
+        if (update.userId === this.usuario?.id) {
+          this.liked = update.action === 'like';
+        }
+        console.log('[Socket] Like actualizado - count:', this.likeCount, 'liked:', this.liked);
+      }
+    });
+
+    const likeErrorSub = this.likeService.onLikeError().subscribe((err) => {
+      console.error('[Socket] like:error recibido:', err);
+      this.messToast.error(err.error, 'Error like');
+    });
+
+    this.socketSubs.push(likeUpdatedSub, likeErrorSub);
+  }
+
+  ngOnDestroy() {
+    this.socketSubs.forEach((sub) => sub.unsubscribe());
   }
 
   cargarDatos() {
-    this.param.queryParams.subscribe((parametro: any) => {
+    this.param.queryParams.pipe(take(1)).subscribe((parametro: any) => {
       if (!parametro['id']) {
         this.navegar.navigate(['/']);
       }
@@ -178,8 +242,21 @@ export class AdminlistPage implements OnInit, AfterViewInit {
   }
 
   BuscarContent(id: any) {
-    this.posted.getOnePosted(id).subscribe((data) => {
+    this.posted.getOnePosted(id).subscribe((data: any) => {
+      console.log('[Post] datos completos del post:', data);
+      console.log('[Post] campo likes:', data.likes);
+      console.log('[Post] campo likespost:', data.likespost);
       this.data = data;
+      const userId = this.usuario?.id;
+
+      if (Array.isArray(data.likes)) {
+        this.likeCount = data.likes.length;
+        this.liked = userId
+          ? data.likes.some((like: any) => like === userId || like._id === userId)
+          : false;
+      } else if (this.data._id) {
+        this.cargarLikes(this.data._id);
+      }
     });
   }
 
@@ -193,6 +270,12 @@ export class AdminlistPage implements OnInit, AfterViewInit {
 
   actualiza(id: any) {
     this.navegar.navigateByUrl('adminlist?id=' + id, { replaceUrl: true });
+  }
+
+  ionViewWillEnter() {
+    if (this.id) {
+      this.BuscarContent(this.id);
+    }
   }
 
   ionViewDidEnter() {
